@@ -1,0 +1,32 @@
+.footerContainer {
+    bottom: 0;
+    padding: 1px;
+    /* position: absolute; */
+    height: 20%;
+    /* width: 100%; */
+    margin: 5px 5px 5px 5px;
+    align-items: center;
+    align-content: center;
+    align-self: center;
+    /* padding: 1px; */
+    border-radius: 5px;
+    background-color: #463712;
+  }
+
+  .footer {
+    display: flex; 
+    justify-content: center;
+    border-collapse: collapse;
+    color: rgb(255, 255, 255);
+  }
+
+  .footerText {
+    display: flex; 
+    justify-content: center;
+    border-collapse: collapse;
+    width: 80%;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-stretch: expanded;
+  }

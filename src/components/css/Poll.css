@@ -1,0 +1,219 @@
+.activePollContainer {
+    top: 0;
+    height: 20%;
+    /* width: 100%; */
+    margin: 5px 5px 5px 5px;
+    align-items: center;
+    align-content: center;
+    align-self: center;
+    padding: 1px;
+    border-radius: 5px;
+    background-color: #8d8989;
+    font-size: x-large;
+    /* text-align: center; */
+}
+.activePollQuestion {
+    top: 0;
+    height: 20%;
+    /* width: 100%; */
+    margin: 5px 5px 5px 5px;
+    align-items: center;
+    align-content: center;
+    align-self: center;
+    padding: 1px;
+    border-radius: 5px;
+    background-color: #0c0c0c;
+    font-size: x-large;
+    text-align: center;
+    color: aliceblue;
+    font-weight: 900;
+}
+
+
+.activePollOptionContainer {
+    top: 0;
+    height: 20%;
+    margin: 5px 5px 5px 5px;
+    align-items: center;
+    align-content: center;
+    align-self: center;
+    padding: 1px;
+    border-radius: 5px;
+    background-color: #353434;
+    font-size: medium;
+}
+
+.activePollOptions {
+    top: 0;
+    height: 20%;
+    /* width: 100%; */
+    margin: 5px 5px 5px 5px;
+    align-items: center;
+    align-content: center;
+    align-self: center;
+    padding: 1px;
+    border-radius: 5px;
+    background-color: #1a496b;
+    font-size: large;
+    color: aliceblue;
+    font-weight: 500;
+}
+
+
+
+
+.activePollOptionRadio {
+    font-size: medium;
+    margin-left: 10px;
+}
+.activePollOptionLabel {
+    /* margin: 5px 15px 5px 5px; */
+    margin-left: 10px;
+    font-size: medium;
+    font-stretch: expanded;
+}
+
+.activePollActionsContainer {
+    top: 0;
+    height: 20%;
+    /* width: 100%; */
+    margin: 5px 5px 5px 5px;
+    align-items: center;
+    align-content: center;
+    align-self: center;
+    padding: 1px;
+    border-radius: 5px;
+    background-color: #5e5e5e;
+    font-size: large;
+    text-align: center;
+}
+
+.activePollActionButton {
+    top: 0;
+    margin: 5px 5px 5px 5px;
+    align-items: center;
+    align-content: center;
+    align-self: center;
+    padding: 1px;
+    border-radius: 5px;
+    background-color: #cde3e9;
+    font-size: large;
+    text-align: center;
+}
+
+
+.pollActionText {
+    margin: 10px 10px 10px 10px;
+    /* font-style: oblique; */
+    font-size: medium;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.pollHistoryTitle{
+    top: 0;
+    height: 20%;
+    /* width: 100%; */
+    margin: 5px 5px 5px 5px;
+    align-items: center;
+    align-content: center;
+    align-self: center;
+    padding: 1px;
+    border-radius: 5px;
+    background-color: #973030;
+    font-size: x-large;
+    text-align: center;
+    color: aliceblue;
+    font-weight: 900;
+}
+
+.pollHistoryContainer{
+    background-color: rgb(146, 21, 21);
+    border-radius: 5px;
+    margin: 5px 5px 5px 5px;
+    padding-top: 5px;
+}
+
+.pollHistoryListHeader {
+    padding-top: 10px;
+    background-color: rgb(229, 172, 151);
+    padding: 1px;
+    border-radius: 5px;
+    /* margin-top: 5px;; */
+    /* margin: auto; */
+    margin: 5px 5px 5px 5px;
+    color: #49400f;
+    font-weight: 600;
+    
+}
+
+.pollHistoryListDetailContainer {
+    /* background-color: rgb(39, 120, 120); */
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin: 1px 1px 1px 1px;
+    /* margin: auto; */
+    /* padding: 1px; */
+    /* border-radius: 5px; */
+    /* margin-top: 5px;; */
+    /* margin: 5px 5px 5px 5px; */
+    /* color: #1a496b; */
+    /* font-weight: 600; */
+
+}
+
+.pollHistoryListDetail {
+    font-weight: 600;
+    color: #1a496b;
+}
+
+.pollHistoryListDetailSelected{
+    background-color: #1a496b;
+    color: aliceblue;
+}
+
+.pollHistory {
+    padding-top: 10px;
+    background-color: rgb(22, 84, 131);
+    padding: 1px;
+    border-radius: 5px;
+    /* margin-top: 5px;; */
+    /* margin: auto; */
+    margin: 5px 5px 5px 5px;
+    color: #49400f;
+    font-weight: 600;
+
+}
+.pollHistoryResultText {
+    text-align: center;
+}
+
+.pollHistoryResultTextPercentage {
+    margin-left: 2px;
+}
+.pollHistoryResults {
+    /* margin-top: 10px;
+    margin-bottom: 15px;
+    margin-left: 10px;
+    margin-right: 10px; */
+    margin: 10px 10px 15px 10px;
+}
+
+.pollHistoryResultProfile {
+    text-align: right;
+    margin-right: 10px;
+}
+.pollHistoryResultProfileImg{
+    /* border-radius: 50%;
+    width: 10px;
+    text-align: right; */
+    margin-left: 5px;
+    width: 30px;
+    height: 30px;
+    /* line-height: 40px; */
+    border-radius: 50%;
+    font-size: 80%;
+    font-weight: 300;
+    color: #f9f4f4;
+    text-align: center;
+    background-color: #a72727;
+}
