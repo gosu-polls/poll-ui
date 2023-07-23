@@ -1,3 +1,107 @@
+.pollJoiner {
+    top: 0;
+    margin: 5px 5px 5px 5px;
+    padding: 1px;
+    border-radius: 5px;
+    font-size: small;
+    font-weight: bold;
+}
+
+.pollJoinerCardNavBtn{
+    margin-top: 2%;
+    border-radius: 5px;
+    border: none;
+    background-color: #c07373;
+    width: 20px;
+    color: aliceblue;
+    font-weight: bold;
+}
+
+.pollJoinerCardNavBtnDisabled{
+    color: rgb(125, 122, 122);
+}
+
+.pollJoinerCardLeft{
+}
+.pollJoinerCard {
+    text-align: center;
+    align-items: center;
+    width: 50%;
+    padding-left: 5px;
+    padding-right: 5px;
+    color: #d5ea37;
+    /* font-size: 2.5rem */
+}
+.pollJoinerCardRight{
+    
+}
+
+.pollJoinerControls {
+    margin-top: 2%;
+    color: #000000;
+    font-weight: bold;
+}
+
+.pollJoinerBtn{
+    /* margin-top: 13px; */
+    border-radius: 5px;
+    width: 40%;
+    border: none;
+}
+
+.pollJoinerBtnDisabled{
+    border-radius: 5px;
+    width: 40%;
+    border: none;
+    text-decoration: line-through;
+    color: #5e5e5e;
+    font-weight: lighter;
+    font-style: oblique;
+}
+
+.pollJoinerTextBox {
+    border-radius: 5px;
+    width: 50%;
+}
+
+.availablePollContainer {
+    background-color: #6a1d1d;
+    color: #f9f4f4;
+}
+
+.createGroup {
+    background-color: #5d1d6a;
+    color: #f9f4f4;
+}
+
+/* .createGroupControls {
+    color: #ffffff;
+}
+
+.joinGroupControls {
+    color: #ffffff;
+} */
+
+.joinGroup {
+    background-color: #1d4607;
+    color: #f9f4f4;
+}
+
+.createPollGroupBtn {
+    background-color: #d1a3da;
+}
+
+.joinPollGroupBtn {
+    background-color: #76ad74;
+}
+
+.myGroups {
+    background-color: #644d0a;
+    color: #f9f4f4;
+}
+.availablePollRadio {
+    margin-left: 10px;
+}
 .activePollContainer {
     top: 0;
     height: 20%;

@@ -10,9 +10,9 @@ function PollHistoryList(props) {
     await fetch("http://localhost:3003/pollhistory", {
       method: "GET",
       headers: {
-        Accept: "application/json",
+        "Accept": "application/json",
         "Content-Type": "application/json",
-        Token: sessionStorage.getItem("user"),
+        "Token": sessionStorage.getItem("user"),
       },
     })
       .then((res) => res.json())

@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
+import { PollJoiner } from "./PollJoiner";
 import { ActivePoll } from "./ActivePoll";
 import { PollHistoryList } from "./PollHistoryList";
 import { PollHistoryDetail } from "./PollHistoryDetail";
 import "./css/Poll.css";
+
 
 function PollHistory(props) {
   useEffect(() => {}, [props]);
@@ -31,6 +33,7 @@ function Polls(props) {
 
   return (
     <>
+      <PollJoiner />
       <ActivePoll />
       <PollHistory />
     </>
