@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Collapsible } from './Collapsible';
 import { PollJoiner } from "./PollJoiner";
 import { ActivePoll } from "./ActivePoll";
 import { PollHistoryList } from "./PollHistoryList";
@@ -33,7 +34,10 @@ function Polls(props) {
 
   return (
     <>
+    <Collapsible label="Groups" >
       <PollJoiner />
+    </Collapsible>
+      
       <ActivePoll />
       <PollHistory />
     </>

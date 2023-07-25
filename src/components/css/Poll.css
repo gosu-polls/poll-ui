@@ -1,5 +1,6 @@
 .pollJoiner {
     top: 0;
+    height: auto;
     margin: 5px 5px 5px 5px;
     padding: 1px;
     border-radius: 5px;
@@ -17,11 +18,33 @@
     font-weight: bold;
 }
 
+.myGroupsCardNavBtn{
+    margin-top: 2%;
+    border-radius: 5px;
+    border: none;
+    background-color: #c1893a;
+    width: 20px;
+    color: aliceblue;
+    font-weight: bold;
+}
+
+.myGroupsCardShareButton {
+    margin-left: 2px;
+    border-radius: 5px;
+}
+
+
 .pollJoinerCardNavBtnDisabled{
     color: rgb(125, 122, 122);
 }
 
+.myGroupsCardNavBtnDisabled{
+    color: rgb(125, 122, 122);
+}
+
 .pollJoinerCardLeft{
+}
+.myGroupsCardLeft{
 }
 .pollJoinerCard {
     text-align: center;
@@ -30,14 +53,28 @@
     padding-left: 5px;
     padding-right: 5px;
     color: #d5ea37;
-    /* font-size: 2.5rem */
+    font-size: large;
 }
+.myGroupsCard {
+    text-align: center;
+    align-items: center;
+    width: 50%;
+    padding-left: 5px;
+    padding-right: 5px;
+    color: #37bdea;
+    font-size: large;
+}
+
 .pollJoinerCardRight{
     
 }
 
+.myGroupsCardRight{
+    
+}
 .pollJoinerControls {
     margin-top: 2%;
+    margin-bottom: 1%;
     color: #000000;
     font-weight: bold;
 }
