@@ -75,7 +75,13 @@ function PollJoiner(props) {
         )
       }
     ).then((res) => res.json()).then(res => {
-      console.log(res)
+      // console.log(res)
+      // console.log(res["data"])
+      
+      setMyGroups(res["data"])
+      setLoadingMyGroups(false);
+      setTotalMyGroups(res["data"].length)
+
       setGroupName('')
     });
     
