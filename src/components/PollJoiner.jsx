@@ -58,22 +58,22 @@ function PollJoiner(props) {
   };
 
   // POST API Calls
-  const handleCreateGroupClick = (e) => {
-    fetch("http://localhost:3003/creategroup",
-    {
+  const handleCreateGroupClick = async (e) => {
+    await fetch("http://localhost:3003/creategroup",
+      {
         method: "POST",
         headers: {
-                    "Accept": "application/json",
-                    "Content-Type": "application/json",
-                    "Token": sessionStorage.getItem("user"),
-                  },
+          "Accept": "application/json",
+          "Content-Type": "application/json",
+          "Token": sessionStorage.getItem("user")
+        },
         body: JSON.stringify(
-            {
-                available_poll : availablePolls[selectedActivePollId],
-                group_name : groupName
-            }
-        ),
-    }
+          {
+            available_poll : availablePolls[selectedActivePollId],
+            group_name : groupName
+          }
+        )
+      }
     ).then((res) => res.json()).then(res => {
       console.log(res)
       setGroupName('')
@@ -81,6 +81,26 @@ function PollJoiner(props) {
     
   }
 
+  const handleJoinGroupClick = async (e) => {
+    await fetch("http://localhost:3003/joingroup",
+      {
+        method: "POST",
+        headers: {
+          "Accept": "application/json",
+          "Content-Type": "application/json",
+          "Token": sessionStorage.getItem("user")
+        },
+        body: JSON.stringify(
+          {
+            group_code: groupCode
+          }
+        )
+      }
+    ).then((res) => res.json()).then(res => {
+      console.log(res)
+      setGroupCode('')
+    });
+  }
   // Handlers
   const handleGroupNameChange = (e) => {
     setGroupName(e.target.value)
@@ -89,18 +109,6 @@ function PollJoiner(props) {
   const handleGroupCodeChange = (e) => {
     setGroupCode(e.target.value)
   }
-  
-  const handleShareGroup = (e) => {
-
-  }
-
-  // const handlePollNavigate = (e) => {
-  //   setSelectedActivePollId(selectedActivePollId => selectedActivePollId + parseInt(e.target.id))
-  // }
-
-  // const handleMyGroupNavigate = (e) => {
-  //   setSelectedMyGroupId(selectedMyGroupId => selectedMyGroupId + parseInt(e.target.id))
-  // }
 
   const handleNavigate = (e) => {
     if (e.target.name === "availablepoll")
@@ -188,6 +196,7 @@ function PollJoiner(props) {
             <span> </span>
             <button className= {groupCode !== '' ? 'pollJoinerControls pollJoinerBtn joinPollGroupBtn' : 'pollJoinerControls pollJoinerBtn joinPollGroupBtn pollJoinerBtnDisabled'}
                     disabled = {groupCode === ''}
+                    onClick={handleJoinGroupClick}
             >
               Join
             </button>
@@ -210,24 +219,17 @@ function PollJoiner(props) {
                   {myGroups.map((group, index) => {
                     return(
                         (index === selectedMyGroupId && 
-                          <>
-                        <span key={group.group_id}>
+                          <span key={group.group_id}>
                             {group.group_name} 
-                        </span>
-                        {/* <button className="myGroupsCardNavBtn myGroupsCardShareButton"
-                          onClick={handleShareGroup}
-                        >  */}
-                          <WhatsappShareButton
-                            url={"polls.com/" + group.group_code}
-                            title={"You are invited to participate in " + group.group_name}
-                            
-                            separator=":: "
-                            className="myGroupsCardShareButton"
-                          >
-                        <WhatsappIcon size={20} square /> 
-                        </WhatsappShareButton>
-                      {/* </button> */}
-                      </>
+                            <WhatsappShareButton
+                              url={"polls.com/" + group.group_code}
+                              title={"You are invited to participate in " + group.group_name}
+                              separator=" : "
+                              className='myGroupsCardShareButton'
+                            >
+                              <WhatsappIcon className='myGroupsCardShareButton' size={20} /> 
+                            </WhatsappShareButton>
+                          </span>
                         )
                     )
                   })}

@@ -1,4 +1,3 @@
-// import './css/home.css';
 import './css/App.css'
 import './css/Header.css';
 import './css/Body.css'
@@ -35,10 +34,6 @@ function Header(props)
 function Body(props, userProfile)
 {
     useEffect(() => {
-        // console.log('Body ' + props)
-        // console.log(props)
-        // console.log('Body ' + userProfile)
-        // console.log(userProfile)
     }, [props])
 
     return (
@@ -80,16 +75,11 @@ function Home(props)
     }, [props])
 
     const handleLogin= ((e) => {
-        // console.log("Home -> handleLogin")
-        // console.log("Home " + e)
-        // console.log(e)
-        // props = e
         setUserProfile(e)
     })
 
     return (
         <>
-        {/* {console.log("Home render")} */}
             <div className="split">
                 <Header props={props} handleLogin={handleLogin}/>
                 <Body props={props} userProfile={userProfile}/>
@@ -98,5 +88,4 @@ function Home(props)
         </>
     )
 }
-// export {Header, Footer, Body}
 export {Home}
