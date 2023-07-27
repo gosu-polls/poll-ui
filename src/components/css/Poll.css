@@ -10,7 +10,7 @@
 
 .pollJoinerCardNavBtn{
     margin-top: 2%;
-    border-radius: 5px;
+    /* border-radius: 5px; */
     border: none;
     background-color: #c07373;
     width: 20px;
@@ -35,16 +35,20 @@
 
 
 .pollJoinerCardNavBtnDisabled{
-    color: rgb(125, 122, 122);
+    background-color: rgb(125, 122, 122);
 }
 
 .myGroupsCardNavBtnDisabled{
-    color: rgb(125, 122, 122);
+    background-color: rgb(125, 122, 122);
 }
 
 .pollJoinerCardLeft{
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
 }
 .myGroupsCardLeft{
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
 }
 .pollJoinerCard {
     text-align: center;
@@ -66,11 +70,13 @@
 }
 
 .pollJoinerCardRight{
-    
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
 }
 
 .myGroupsCardRight{
-    
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
 }
 .pollJoinerControls {
     margin-top: 2%;
@@ -358,4 +364,63 @@
     color: #f9f4f4;
     text-align: center;
     background-color: #a72727;
+}
+
+.participatingPollsContainer {
+    top: 0;
+    height: auto;
+    /* width: 100%; */
+    margin: 5px 5px 5px 5px;
+    align-items: center;
+    align-content: center;
+    align-self: center;
+    padding: 1px;
+    border-radius: 5px;
+    background-color: #670404;
+    font-size: x-large;
+    /* text-align: center; */
+    color: aliceblue;
+    font-weight: 700;
+    /* paadding-right: 20px;; */
+
+}
+
+.participatingPollsText {
+    top: 5px;
+    padding-left: 2%;
+    padding-right: 1%;
+    bottom: 0;
+}
+
+.participatingPollNavBtn {
+    margin-left: 5px;
+    margin-right: 5px;
+    /* margin-top: 2%; */
+    border: none;
+    background-color: #2f0101;
+    width: auto;
+    color: aliceblue;
+    font-weight: bold;
+    font-weight: lighter;
+    border-width: 1px;
+    border-style: dotted;
+    border-color: #37bdea;
+
+}
+
+.participatingPollNavBtnDisabled {
+    background-color: #8b8787;
+    border-color: #b8e2f0;
+    border-style: none;    
+    margin-left: 5px;
+    margin-right: 5px;
+
+}
+.participatingPollNavLeftBtn {
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+.participatingPollNavRightBtn {
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
 }

@@ -2,18 +2,41 @@ import { useEffect, useState } from "react";
 import "./css/Poll.css";
 
 function VoteMain(props) {
+    
+    const [participatingPolls, setParticipatingPolls] = useState([])
+    const [selectedParticipatingPollId, setSelectedParticipatingPollId] = useState(0)
+    const [participatingPollsLoading, setParticipitingPollsLoading] = useState(true)
+    const [totalParticipatingPolls, setTotalParticipatingPolls] = useState(0)
+
     const [pollQuestion, setPollQuestion] = useState();
     const [pollOptions, setPollOptions] = useState([]);
     const [loading, setLoading] = useState(true);
     const [selectedOption, setSelectedOption] = useState(-1);
-  
+
+    // GET API Calls
+    const loadParticipatingPolls = async () => {
+      await fetch("http://localhost:3003/participatingpolls", {
+          method: "GET",
+          headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+            "Token": sessionStorage.getItem("user")
+          }
+        }).then((res) => res.json())
+          .then((res) => {
+            setParticipatingPolls(res["data"])
+            setTotalParticipatingPolls(res["data"].length)
+            setParticipitingPollsLoading(false)
+          })
+    }
+
     const loadPolls = async () => {
       await fetch("http://localhost:3003/poll", {
         method: "GET",
         headers: {
-          Accept: "application/json",
+          "Accept": "application/json",
           "Content-Type": "application/json",
-          Token: sessionStorage.getItem("user"),
+          "Token": sessionStorage.getItem("user"),
         },
       })
         .then((res) => res.json())
@@ -35,19 +58,69 @@ function VoteMain(props) {
     };
   
     useEffect(() => {
+      setParticipatingPolls([]);
+      setParticipitingPollsLoading(true);
+      loadParticipatingPolls()
       setPollOptions([]);
       setPollQuestion();
       setLoading(true);
       loadPolls();
     }, [props]);
   
+    const handleNavigate = (e) => {
+      if (e.target.name == 'participatingpoll')
+      {
+        setSelectedParticipatingPollId(selectedParticipatingPollId => selectedParticipatingPollId + parseInt(e.target.id))
+      }
+    }
+
     return (
       <>
         <div className="activePollContainer">
-          {loading ? (
+          {participatingPollsLoading ? (
             <p> Loading...</p>
           ) : (
             <>
+              <div className="participatingPollsContainer">
+                <span className="participatingPollsText">
+                  Participating Polls
+                </span>
+                <span>
+                  <button className={selectedParticipatingPollId > 0 ? "participatingPollNavBtn participatingPollNavLeftBtn" : "participatingPollNavBtnDisabled participatingPollNavLeftBtn"}
+                          id = '-1'
+                          name = 'participatingpoll'
+                          disabled = {selectedParticipatingPollId <= 0}
+                          onClick={handleNavigate}
+                  > 
+                    &lt;
+                  </button>
+                </span>
+                <span>
+                  {
+                    participatingPolls.map((poll, index) => {
+                      return(
+                        (index === selectedParticipatingPollId &&
+                          <span key = {poll.poll_id}>
+                            {poll.poll_name}
+                          </span>
+                        )
+                      )
+                    })
+                  }
+                </span>
+                <span>
+                
+                <button className={selectedParticipatingPollId < totalParticipatingPolls-1? "participatingPollNavBtn participatingPollNavRightBtn" : "participatingPollNavBtnDisabled participatingPollNavRightBtn"}
+                          id = '1'
+                          name = 'participatingpoll'
+                          disabled = {selectedParticipatingPollId >= 0}
+                          onClick={handleNavigate}
+                > 
+                  &gt;
+                </button>
+                </span>
+              </div>
+
               <div className="activePollQuestion">{pollQuestion}</div>
               <div className="activePollOptionContainer">
                 {pollOptions.map((poll) => {

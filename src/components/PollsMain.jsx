@@ -12,18 +12,20 @@ function PollHistory(props) {
 
   return (
     <>
-      <div className="pollHistoryTitle">Poll History</div>
+      <div className="pollHistoryTitle">
+        Poll History
+      </div>
       <div className="pollHistoryContainer">
         <div className="container">
           <div className="row">
             <div className="col-4 pollHistoryListHeader">
-              <PollHistoryList />
+                <PollHistoryList />
             </div>
             <div className="col pollHistory">
               <PollHistoryDetail />
             </div>
           </div>
-        </div>
+         </div>
       </div>
     </>
   );
@@ -34,9 +36,9 @@ function PollsMain(props) {
 
   return (
     <>
-    <Collapsible label="Groups" >
-      <GroupMain />
-    </Collapsible>
+      <Collapsible label="Groups" >
+        <GroupMain />
+      </Collapsible>
       
       <VoteMain />
       <PollHistory />
