@@ -25,7 +25,7 @@
 }
     
 .contentShow {
-    height: 50px;
+    height: 100px;
     transition: height ease 0.9s;
 }
 

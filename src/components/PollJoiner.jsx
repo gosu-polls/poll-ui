@@ -3,6 +3,7 @@ import "./css/Poll.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faArrowUpFromBracket} from '@fortawesome/free-solid-svg-icons'
 import {WhatsappShareButton, WhatsappIcon} from "react-share";
+import { AvailablePolls } from "./AvailablePolls";
 
 function PollJoiner(props) {
 
@@ -140,41 +141,7 @@ function PollJoiner(props) {
     <>
       <div className="container text-center">
         <div className="row">
-          {loadingAvailableGroups ? 
-            ( <p> Loading...</p> ) 
-            : 
-            (
-              <div className="col pollJoiner availablePollContainer">
-                <button className={selectedActivePollId >0 ? "pollJoinerCardNavBtn pollJoinerCardLeft" : "pollJoinerCardNavBtn pollJoinerCardLeft pollJoinerCardNavBtnDisabled"}
-                        id = '-1'
-                        name = "availablepoll"
-                        disabled = {selectedActivePollId <= 0}
-                        onClick={handleNavigate}
-                > 
-                  &lt;
-                </button>
-                <span className="pollJoinerCard">
-                {availablePolls.map((poll, index) => {
-                  return(
-                      (index === selectedActivePollId && 
-                      <span key={poll.poll_id}>
-                          {poll.poll_name} 
-                      </span>
-                      )
-                  )
-                })}
-                </span>
-                <button className={selectedActivePollId < totalActivePolls-1 ? "pollJoinerCardNavBtn pollJoinerCardRight" : "pollJoinerCardNavBtn pollJoinerCardRight pollJoinerCardNavBtnDisabled"}
-                        id = '1'
-                        name = "availablepoll"
-                        disabled = {selectedActivePollId >= totalActivePolls-1}
-                        onClick={handleNavigate}
-                > 
-                  &gt;
-                </button>
-              </div>
-            )
-          }
+          <AvailablePolls />
 
           <div className="col pollJoiner createGroup ">
             <input type="text" 
@@ -183,7 +150,6 @@ function PollJoiner(props) {
                     onChange={handleGroupNameChange}
                     value={groupName}
             />
-            <span> </span>
             <button className= {groupName !== '' ? 'pollJoinerControls pollJoinerBtn createPollGroupBtn' : 'pollJoinerControls pollJoinerBtn createPollGroupBtn pollJoinerBtnDisabled'}
                     disabled = {groupName === ''}
                     onClick={handleCreateGroupClick}
@@ -192,6 +158,57 @@ function PollJoiner(props) {
             </button>
           </div>
 
+
+
+          
+        </div>
+        <div className="row">
+          {loadingMyGroups ? 
+              ( <p> Loading...</p> ) 
+              : 
+              (
+                <div className="col pollJoiner myGroups">
+                  <button className={selectedMyGroupId >0 ? "myGroupsCardNavBtn myGroupsCardLeft" : "myGroupsCardNavBtn myGroupsCardLeft myGroupsCardNavBtnDisabled"}
+                    id = '-1'
+                    name = "mygroup"
+                    disabled = {selectedMyGroupId <= 0}
+                    onClick={handleNavigate}
+                  > 
+                    &lt;
+                  </button>
+                  <span className="myGroupsCard">
+                    {myGroups.map((group, index) => {
+                      return(
+                          (index === selectedMyGroupId && 
+                            <span key={group.group_id}>
+                              {group.group_name} 
+                              <WhatsappShareButton
+                                url={"polls.com/" + group.group_code}
+                                title={"You are invited to participate in " + group.group_name}
+                                separator=" : "
+                                className='myGroupsCardShareButton'
+                              >
+                                <WhatsappIcon className='myGroupsCardShareButton' size={20} /> 
+                              </WhatsappShareButton>
+                            </span>
+                          )
+                      )
+                    })}
+                  </span>
+
+
+                  <button className={selectedMyGroupId < totalMyGroups-1 ? "myGroupsCardNavBtn myGroupsCardRight" : "myGroupsCardNavBtn pollJoinerCardRight myGroupsCardNavBtnDisabled"}
+                          id = '1'
+                          name = "mygroup"
+                          disabled = {selectedMyGroupId >= totalMyGroups-1}
+                          onClick={handleNavigate}
+                  > 
+                    &gt;
+                  </button>
+                </div>
+              )
+            }
+
           <div className="col pollJoiner joinGroup">
             <input type="text" 
                   className='pollJoinerControls pollJoinerTextBox joinGroupControls' 
@@ -199,7 +216,6 @@ function PollJoiner(props) {
                   onChange={handleGroupCodeChange}
                   value={groupCode}
             />
-            <span> </span>
             <button className= {groupCode !== '' ? 'pollJoinerControls pollJoinerBtn joinPollGroupBtn' : 'pollJoinerControls pollJoinerBtn joinPollGroupBtn pollJoinerBtnDisabled'}
                     disabled = {groupCode === ''}
                     onClick={handleJoinGroupClick}
@@ -207,52 +223,6 @@ function PollJoiner(props) {
               Join
             </button>
           </div>
-
-          {loadingMyGroups ? 
-            ( <p> Loading...</p> ) 
-            : 
-            (
-              <div className="col pollJoiner myGroups">
-                <button className={selectedMyGroupId >0 ? "myGroupsCardNavBtn myGroupsCardLeft" : "myGroupsCardNavBtn myGroupsCardLeft myGroupsCardNavBtnDisabled"}
-                  id = '-1'
-                  name = "mygroup"
-                  disabled = {selectedMyGroupId <= 0}
-                  onClick={handleNavigate}
-                > 
-                  &lt;
-                </button>
-                <span className="myGroupsCard">
-                  {myGroups.map((group, index) => {
-                    return(
-                        (index === selectedMyGroupId && 
-                          <span key={group.group_id}>
-                            {group.group_name} 
-                            <WhatsappShareButton
-                              url={"polls.com/" + group.group_code}
-                              title={"You are invited to participate in " + group.group_name}
-                              separator=" : "
-                              className='myGroupsCardShareButton'
-                            >
-                              <WhatsappIcon className='myGroupsCardShareButton' size={20} /> 
-                            </WhatsappShareButton>
-                          </span>
-                        )
-                    )
-                  })}
-                </span>
-
-
-                <button className={selectedMyGroupId < totalMyGroups-1 ? "myGroupsCardNavBtn myGroupsCardRight" : "myGroupsCardNavBtn pollJoinerCardRight myGroupsCardNavBtnDisabled"}
-                        id = '1'
-                        name = "mygroup"
-                        disabled = {selectedMyGroupId >= totalMyGroups-1}
-                        onClick={handleNavigate}
-                > 
-                  &gt;
-                </button>
-              </div>
-            )
-          }
         </div>
       </div>
     </>
