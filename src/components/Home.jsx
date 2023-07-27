@@ -4,7 +4,7 @@ import './css/Body.css'
 import './css/Footer.css';
 import React, {useEffect, useState} from "react";
 import {GoogleAuth} from './GoogleProfile';
-import {Polls} from './Polls';
+import {PollsMain} from './PollsMain';
 
 function Header(props)
 {
@@ -41,7 +41,7 @@ function Body(props, userProfile)
             {/* {console.log("Body render")} */}
             <div className='bodyContainer'>
                 <div className="body">
-                    <Polls props={props} />
+                    <PollsMain props={props} />
                 </div>
             </div>
         </>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { Collapsible } from './Collapsible';
-import { PollJoiner } from "./PollJoiner";
-import { ActivePoll } from "./ActivePoll";
+import { Collapsible } from './utils/Collapsible';
+import { GroupMain } from "./GroupMain";
+import { VoteMain } from "./VoteMain";
 import { PollHistoryList } from "./PollHistoryList";
 import { PollHistoryDetail } from "./PollHistoryDetail";
 import "./css/Poll.css";
@@ -29,18 +29,18 @@ function PollHistory(props) {
   );
 }
 
-function Polls(props) {
+function PollsMain(props) {
   useEffect(() => {});
 
   return (
     <>
     <Collapsible label="Groups" >
-      <PollJoiner />
+      <GroupMain />
     </Collapsible>
       
-      <ActivePoll />
+      <VoteMain />
       <PollHistory />
     </>
   );
 }
-export { Polls };
+export { PollsMain };

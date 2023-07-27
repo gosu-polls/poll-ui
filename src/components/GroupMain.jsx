@@ -3,9 +3,8 @@ import "./css/Poll.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faArrowUpFromBracket} from '@fortawesome/free-solid-svg-icons'
 import {WhatsappShareButton, WhatsappIcon} from "react-share";
-import { AvailablePolls } from "./AvailablePolls";
 
-function PollJoiner(props) {
+function GroupMain(props) {
 
   const [selectedPoll, setSelectedPoll] = useState(-1);
   const [groupName, setGroupName] = useState('')
@@ -15,6 +14,7 @@ function PollJoiner(props) {
   const [totalActivePolls, setTotalActivePolls] = useState(0)
   const [loadingAvailableGroups, setLoadingAvailableGroups] = useState(true);
   const [selectedActivePollId, setSelectedActivePollId] = useState(0)
+
 
   const [myGroups, setMyGroups] = useState([])
   const [totalMyGroups, setTotalMyGroups] = useState(0)
@@ -141,7 +141,41 @@ function PollJoiner(props) {
     <>
       <div className="container text-center">
         <div className="row">
-          <AvailablePolls />
+        {loadingAvailableGroups ? 
+                ( <p> Loading...</p> ) 
+                : 
+                (
+                <div className="col pollJoiner availablePollContainer">
+                    <button className={selectedActivePollId >0 ? "pollJoinerCardNavBtn pollJoinerCardLeft" : "pollJoinerCardNavBtn pollJoinerCardLeft pollJoinerCardNavBtnDisabled"}
+                            id = '-1'
+                            name = "availablepoll"
+                            disabled = {selectedActivePollId <= 0}
+                            onClick={handleNavigate}
+                    > 
+                    &lt;
+                    </button>
+                    <span className="pollJoinerCard">
+                    {availablePolls.map((poll, index) => {
+                    return(
+                        (index === selectedActivePollId && 
+                        <span key={poll.poll_id}>
+                            {poll.poll_name} 
+                        </span>
+                        )
+                    )
+                    })}
+                    </span>
+                    <button className={selectedActivePollId < totalActivePolls-1 ? "pollJoinerCardNavBtn pollJoinerCardRight" : "pollJoinerCardNavBtn pollJoinerCardRight pollJoinerCardNavBtnDisabled"}
+                            id = '1'
+                            name = "availablepoll"
+                            disabled = {selectedActivePollId >= totalActivePolls-1}
+                            onClick={handleNavigate}
+                    > 
+                    &gt;
+                    </button>
+                </div>
+                )
+            }
 
           <div className="col pollJoiner createGroup ">
             <input type="text" 
@@ -229,4 +263,4 @@ function PollJoiner(props) {
   )
 }
 
-export {PollJoiner}
+export {GroupMain}
