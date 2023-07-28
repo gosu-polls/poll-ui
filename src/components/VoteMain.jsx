@@ -24,6 +24,8 @@ function VoteMain(props) {
           }
         }).then((res) => res.json())
           .then((res) => {
+            // console.log(res)
+            // console.log(res["data"])
             setParticipatingPolls(res["data"])
             setTotalParticipatingPolls(res["data"].length)
             setParticipitingPollsLoading(false)

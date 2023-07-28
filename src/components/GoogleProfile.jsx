@@ -21,7 +21,8 @@ function GoogleAuth(props) {
       })
         .then((res) => res.json())
         .then((res) => {
-          //console.log(res);
+          // console.log(res);
+          
           sessionStorage.setItem("user", JSON.stringify(res["data"]));
           setUserSessionCookie(JSON.parse(sessionStorage.getItem("user")));
           setUser(res["data"]);
