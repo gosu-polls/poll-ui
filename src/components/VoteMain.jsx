@@ -115,7 +115,7 @@ function VoteMain(props) {
                 <button className={selectedParticipatingPollId < totalParticipatingPolls-1? "participatingPollNavBtn participatingPollNavRightBtn" : "participatingPollNavBtnDisabled participatingPollNavRightBtn"}
                           id = '1'
                           name = 'participatingpoll'
-                          disabled = {selectedParticipatingPollId >= 0}
+                          disabled = {selectedParticipatingPollId >= totalParticipatingPolls-1}
                           onClick={handleNavigate}
                 > 
                   &gt;
