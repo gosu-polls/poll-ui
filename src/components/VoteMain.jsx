@@ -25,7 +25,7 @@ function VoteMain(props) {
         }).then((res) => res.json())
           .then((res) => {
             // console.log(res)
-            // console.log(res["data"])
+            console.log(res["data"])
             setParticipatingPolls(res["data"])
             setTotalParticipatingPolls(res["data"].length)
             setParticipitingPollsLoading(false)
@@ -43,8 +43,9 @@ function VoteMain(props) {
       })
         .then((res) => res.json())
         .then((res) => {
-          if ("question" in res["data"]) setPollQuestion(res["data"]["question"]);
-          if ("options" in res["data"]) setPollOptions(res["data"]["options"]);
+          console.log(res["data"])
+          // if ("question" in res["data"]) setPollQuestion(res["data"]["question"]);
+          // if ("options" in res["data"]) setPollOptions(res["data"]["options"]);
           setLoading(false);
         });
     };
