@@ -4,12 +4,15 @@ import "./css/Poll.css";
 function VoteMain(props) {
     
     const [participatingPolls, setParticipatingPolls] = useState([])
-    const [selectedParticipatingPollId, setSelectedParticipatingPollId] = useState(0)
+    const [selectedParticipatingPollIndexId, setSelectedParticipatingPollIndexId] = useState(0)
+    const [selectedParticipatingPollId, setSelectedParticipatingPollId] = useState(-1)
     const [participatingPollsLoading, setParticipitingPollsLoading] = useState(true)
     const [totalParticipatingPolls, setTotalParticipatingPolls] = useState(0)
 
+    const [votingSection, setVotingSection] = useState([])
     const [pollQuestion, setPollQuestion] = useState();
     const [pollOptions, setPollOptions] = useState([]);
+    const [pollCount, setPollCount] = useState(0)
     const [loading, setLoading] = useState(true);
     const [selectedOption, setSelectedOption] = useState(-1);
 
@@ -28,12 +31,16 @@ function VoteMain(props) {
             console.log(res["data"])
             setParticipatingPolls(res["data"])
             setTotalParticipatingPolls(res["data"].length)
+            // console.log(res["data"][0]["poll_id"])
+
+            // setSelectedParticipatingPollId(res["data"][0]["poll_id"])
+            console.log(selectedParticipatingPollId)
             setParticipitingPollsLoading(false)
           })
     }
 
     const loadPolls = async () => {
-      await fetch("http://localhost:3003/poll", {
+      await fetch("http://localhost:3003/votesection", {
         method: "GET",
         headers: {
           "Accept": "application/json",
@@ -44,6 +51,8 @@ function VoteMain(props) {
         .then((res) => res.json())
         .then((res) => {
           console.log(res["data"])
+          setPollCount(res["data"].length)
+          setVotingSection(res["data"])
           // if ("question" in res["data"]) setPollQuestion(res["data"]["question"]);
           // if ("options" in res["data"]) setPollOptions(res["data"]["options"]);
           setLoading(false);
@@ -71,9 +80,17 @@ function VoteMain(props) {
     }, [props]);
   
     const handleNavigate = (e) => {
-      if (e.target.name == 'participatingpoll')
+      if (e.target.name === 'participatingpoll')
       {
-        setSelectedParticipatingPollId(selectedParticipatingPollId => selectedParticipatingPollId + parseInt(e.target.id))
+        setSelectedParticipatingPollIndexId(selectedParticipatingPollIndexId => selectedParticipatingPollIndexId + parseInt(e.target.id))
+        // console.log('Selected Participating Poll: ', participatingPolls[selectedParticipatingPollIndexId + parseInt(e.target.id)])
+        // console.log('Selected Participating Poll Poll_id: ', participatingPolls[selectedParticipatingPollIndexId + parseInt(e.target.id)]['poll_id'])
+        setSelectedParticipatingPollId(participatingPolls[selectedParticipatingPollIndexId + parseInt(e.target.id)]['poll_id'])
+        // setSelectedParticipatingPollId(participatingPolls[selectedParticipatingPollId + parseInt(e.target.id)]['poll_id'])
+        // console.log(participatingPolls[selectedParticipatingPollIndexId + parseInt(e.target.id)]['poll_id'])
+        // console.log(participatingPolls[selectedParticipatingPollIndexId + parseInt(e.target.id)]['poll_name'])
+        // selectedParticipatingPollId(participatingPolls[selectedParticipatingPollId + parseInt(e.target.id)]['poll_id'])
+        // console.log(selectedParticipatingPollIndexId + parseInt(e.target.id))
       }
     }
 
@@ -84,15 +101,17 @@ function VoteMain(props) {
             <p> Loading...</p>
           ) : (
             <>
+              {/* Participating Poll Start */}
+              <>
               <div className="participatingPollsContainer">
                 <span className="participatingPollsText">
                   Participating Polls
                 </span>
                 <span>
-                  <button className={selectedParticipatingPollId > 0 ? "participatingPollNavBtn participatingPollNavLeftBtn" : "participatingPollNavBtnDisabled participatingPollNavLeftBtn"}
+                  <button className={selectedParticipatingPollIndexId > 0 ? "participatingPollNavBtn participatingPollNavLeftBtn" : "participatingPollNavBtnDisabled participatingPollNavLeftBtn"}
                           id = '-1'
                           name = 'participatingpoll'
-                          disabled = {selectedParticipatingPollId <= 0}
+                          disabled = {selectedParticipatingPollIndexId <= 0}
                           onClick={handleNavigate}
                   > 
                     &lt;
@@ -102,7 +121,8 @@ function VoteMain(props) {
                   {
                     participatingPolls.map((poll, index) => {
                       return(
-                        (index === selectedParticipatingPollId &&
+                        (index === selectedParticipatingPollIndexId &&
+                          // (poll.poll_id == selectedParticipatingPollId &&
                           <span key = {poll.poll_id}>
                             {poll.poll_name}
                           </span>
@@ -112,60 +132,127 @@ function VoteMain(props) {
                   }
                 </span>
                 <span>
-                
-                <button className={selectedParticipatingPollId < totalParticipatingPolls-1? "participatingPollNavBtn participatingPollNavRightBtn" : "participatingPollNavBtnDisabled participatingPollNavRightBtn"}
+                <button className={selectedParticipatingPollIndexId < totalParticipatingPolls-1? "participatingPollNavBtn participatingPollNavRightBtn" : "participatingPollNavBtnDisabled participatingPollNavRightBtn"}
                           id = '1'
                           name = 'participatingpoll'
-                          disabled = {selectedParticipatingPollId >= totalParticipatingPolls-1}
+                          disabled = {selectedParticipatingPollIndexId >= totalParticipatingPolls-1}
                           onClick={handleNavigate}
                 > 
                   &gt;
                 </button>
                 </span>
               </div>
+              </>
+              {/* Participating Poll End */}
 
-              <div className="activePollQuestion">{pollQuestion}</div>
-              <div className="activePollOptionContainer">
-                {pollOptions.map((poll) => {
-                  return (
-                    <div key={poll.id} className="activePollOptions">
-                      <div className="form-check">
-                        <input
-                          className="form-check-input"
-                          type="radio"
-                          name="pollOption"
-                          value={poll.opt}
-                          id={poll.id}
-                          checked={poll.id === selectedOption}
-                          onChange={handleOptionClick}
-                        />
-                        <label
-                          className="form-check-label"
-                          htmlFor="flexRadioDefault1"
-                        >
-                          {poll.opt}
-                        </label>
+              {/* Voting Section Start */}
+              <>
+                
+                <div className="activePollOptionContainer">
+                  {votingSection.map((vote) => {
+                      return (
+                        (selectedParticipatingPollId === vote.poll_id &&
+                          <>
+                            {
+                              vote.data.map((vd) => {
+                                {console.log(vd)}
+                                return (
+                                  <>
+                                    <div className="activePollTitle">{vd.vote_title}</div>
+                                    {vd.vote_detail.map((vdd) => {
+                                      return(
+                                        // <>
+                                          <div key={vdd.vote_detail_id} className="activePollOptions">
+                                            <div className="form-check">
+                                              <input
+                                                className="form-check-input"
+                                                type="radio"
+                                                name="pollOption"
+                                                value={vdd.option}
+                                                id={vdd.vote_detail_id}
+                                                checked={vdd.vote_detail_id === selectedOption}
+                                                onChange={handleOptionClick}
+                                              />
+                                              <label
+                                                className="form-check-label"
+                                                htmlFor="flexRadioDefault1"
+                                              >
+                                                {vdd.option}
+                                              </label>
+                                            </div>
+                                          </div>
+                                        // </>
+                                      )}
+                                      )
+                                    }
+                                    <div className="activePollActionsContainer">
+                                      <button
+                                        className="activePollActionButton"
+                                        onClick={handleSubmitClick}
+                                        disabled={pollCount === 0}
+                                      >
+                                        <span className="pollActionText"> Submit </span>
+                                      </button>
+                                      <button
+                                        className="activePollActionButton"
+                                        onClick={handleCancelClick}
+                                        disabled={pollCount === 0}
+                                      >
+                                        <span className="pollActionText"> Cancel </span>
+                                      </button>
+                                    </div>
+                                  </>
+                                )
+                              })
+                            }
+                        </>
+                        )
+                      )
+                    })
+                  }
+                  {/* {pollOptions.map((poll) => {
+                    return (
+                      <div key={poll.id} className="activePollOptions">
+                        <div className="form-check">
+                          <input
+                            className="form-check-input"
+                            type="radio"
+                            name="pollOption"
+                            value={poll.opt}
+                            id={poll.id}
+                            checked={poll.id === selectedOption}
+                            onChange={handleOptionClick}
+                          />
+                          <label
+                            className="form-check-label"
+                            htmlFor="flexRadioDefault1"
+                          >
+                            {poll.opt}
+                          </label>
+                        </div>
                       </div>
-                    </div>
-                  );
-                })}
-              </div>
-              <div className="activePollActionsContainer">
-                <button
-                  className="activePollActionButton"
-                  onClick={handleSubmitClick}
-                >
-                  {" "}
-                  <span className="pollActionText"> Submit </span>
-                </button>
-                <button
-                  className="activePollActionButton"
-                  onClick={handleCancelClick}
-                >
-                  {" "}
-                  <span className="pollActionText"> Cancel </span>
-                </button>
-              </div>
+                    );
+                  })} */}
+                </div>
+                {/* <div className="activePollActionsContainer">
+                  <button
+                    className="activePollActionButton"
+                    onClick={handleSubmitClick}
+                    disabled={pollCount === 0}
+                  >
+                    <span className="pollActionText"> Submit </span>
+                  </button>
+                  <button
+                    className="activePollActionButton"
+                    onClick={handleCancelClick}
+                    disabled={pollCount === 0}
+                  >
+                    <span className="pollActionText"> Cancel </span>
+                  </button>
+                </div> */}
+              </>
+              {/* Voting Section End */}
+
             </>
           )}
         </div>
