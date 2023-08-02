@@ -181,7 +181,6 @@ function VoteMain(props) {
                                       )}
                                       )
                                     }
-
                                     <div className="activePollActionsContainer">
                                       <button
                                         className="activePollActionButton"
