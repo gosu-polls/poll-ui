@@ -3,13 +3,15 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import App from './App';
+import {AppTest} from './AppTest';
 import 'bootstrap/dist/css/bootstrap.css';
 
 const root = createRoot(document.getElementById('root'));
 root.render(
     <GoogleOAuthProvider clientId="969817469152-u2fn65nrg8udhijn9fu9bkfmoi6hbf3g.apps.googleusercontent.com">
         <React.StrictMode>
-            <App />
+            {/* <App /> */}
+            <AppTest />
         </React.StrictMode>
     </GoogleOAuthProvider>
 );

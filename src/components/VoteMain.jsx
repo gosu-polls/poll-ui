@@ -61,8 +61,25 @@ function VoteMain(props) {
       setSelectedOption(-1);
     };
     const handleSubmitClick = (e) => {
-      console.log(selectedOption);
+      // console.log(selectedOption);
+      e.preventDefault()
+      console.clear()
+      console.log("handle Submit Click Start")
+      console.log("e: ", e)
+      console.log("e.target: ", e.target)
+      console.log("handle Submit Click End")
     };
+
+    const handleSubmitForm = (e) => {
+      e.preventDefault()
+      console.clear()
+      console.log("handle Submit Click Form Start")
+      console.log("e: ", e)
+      console.log("e.target: ", e.target)
+      
+      // console.log(inputs)
+      console.log("handle Submit Click Form End")
+    }
 
     const handleOptionClick = (e) => {
       console.log("handleOptionClick ", e)
@@ -156,6 +173,7 @@ function VoteMain(props) {
                               vote.data.map((vd) => {
                                 return (
                                   <div key={vd.vote_title} >
+                                    <form tag = {vd.vote_title} onSubmit={handleSubmitForm}>
                                     <div className="activePollTitle">{vd.vote_title}</div>
                                     {vd.vote_detail.map((vdd) => {
                                       return(
@@ -185,10 +203,11 @@ function VoteMain(props) {
                                       <button
                                         className="activePollActionButton"
                                         onClick={handleSubmitClick}
-                                        disabled={pollCount === 0}
+                                        disabled={pollCount === 0}  
                                       >
-                                        <span className="pollActionText"> Submit </span>
+                                        <span className="pollActionText"> Submit1 </span>
                                       </button>
+
                                       <button
                                         className="activePollActionButton"
                                         onClick={handleCancelClick}
@@ -196,7 +215,12 @@ function VoteMain(props) {
                                       >
                                         <span className="pollActionText"> Cancel </span>
                                       </button>
+
+                                      <input type="submit" value = "submit form"/>
+                                    
                                     </div>
+                                    
+                                    </form>
                                   </div>
                                 )
                               })
