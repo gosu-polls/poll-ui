@@ -1,3 +1,9 @@
+.progress-bar {
+    background-color: #49c3ff;
+    color:black;
+    text-align: left;
+}
+
 .pollJoiner {
     top: 0;
     height: auto;
@@ -332,7 +338,7 @@
 
 }
 .pollHistoryResultText {
-    text-align: center;
+    text-align: left;
 }
 
 .pollHistoryResultTextPercentage {
@@ -357,7 +363,7 @@
     margin-left: 5px;
     width: 30px;
     height: 30px;
-    /* line-height: 40px; */
+    line-height: 30px; 
     border-radius: 50%;
     font-size: 80%;
     font-weight: 300;
@@ -423,4 +429,37 @@
 .participatingPollNavRightBtn {
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
+}
+.pollHistoryStack {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 100%;
+}
+.progress.pollHistoryResults {
+    height: 30px;
+    position: relative;
+    text-align: left;
+    margin-left: 20px;
+}
+.pollHistoryResultText {
+    position: absolute;
+    top: 14px;    
+    left: 10px;
+    font-weight: bold;
+}
+.pollHistoryResultTextPercentage {
+    margin-top: 14px;
+}
+.pollHistoryResultProfile {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: end;
+    position:inherit;
+    margin-left: 65%;    
+}
+
+.match{
+    color:white;    
 }
