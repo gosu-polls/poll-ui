@@ -23,5 +23,7 @@ yarn-debug.log*
 yarn-error.log*
 
 /src/to-be-sorted/
-
+AppTest.jsx
 *secret*
+
+# https://stackoverflow.com/questions/67626696/radio-buttons-with-react-hook-form

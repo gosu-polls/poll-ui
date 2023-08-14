@@ -28,10 +28,10 @@ function VoteMain(props) {
         }).then((res) => res.json())
           .then((res) => {
             // console.log(res)
-            console.log("participating polls ", res["data"])
+            // console.log("participating polls ", res["data"])
             if (res["data"].length > 0)
             {
-              console.log("participating polls[0].poll_id ", res["data"][0]["poll_id"])
+              // console.log("participating polls[0].poll_id ", res["data"][0]["poll_id"])
               setSelectedParticipatingPollId(res["data"][0]["poll_id"])
             }
             setParticipatingPolls(res["data"])
@@ -51,23 +51,82 @@ function VoteMain(props) {
       })
         .then((res) => res.json())
         .then((res) => {
-          console.log("vote section: ", res["data"])
+          // console.log("vote section: ", res["data"])
           setPollCount(res["data"].length)
+          
           setVotingSection(res["data"])
           setLoading(false);
+
         });
     };
     const handleCancelClick = (e) => {
       setSelectedOption(-1);
     };
-    const handleSubmitClick = (e) => {
-      console.log(selectedOption);
+    const handleSubmitClick = async (e) => {
+      // console.log()
+      // const selectedVotingSection = votingSection.slice()
+      let pollId = parseInt(e.currentTarget.attributes.poll_id.value)
+      let voteId = parseInt(e.currentTarget.attributes.vote_id.value)
+      let selectedVoteId = votingSection.filter((vs) => vs.poll_id === parseInt(e.currentTarget.attributes.poll_id.value))[0].data.filter((p) => p.vote_id === parseInt(e.currentTarget.attributes.vote_id.value))[0].selected_vote_detail_id
+      
+      console.log(parseInt(e.currentTarget.attributes.poll_id.value), 
+                  parseInt(e.currentTarget.attributes.vote_id.value), 
+                  votingSection.filter((vs) => vs.poll_id === parseInt(e.currentTarget.attributes.poll_id.value))[0].data.filter((p) => p.vote_id === parseInt(e.currentTarget.attributes.vote_id.value))[0].selected_vote_detail_id)
+      
+      await fetch("http://localhost:3003/savevote",
+      {
+        method: "POST",
+        headers: {
+          "Accept": "application/json",
+          "Content-Type": "application/json",
+          "Token": sessionStorage.getItem("user")
+        },
+        body: JSON.stringify(
+          {
+            poll_id : pollId,
+            vote_id : voteId,
+            selected_vote_id : selectedVoteId
+          }
+        )
+      }
+    ).then((res) => res.json()).then(res => {
+      console.log(res)
+      console.log(res["data"])
+      
+      // setMyGroups(res["data"])
+      // setLoadingMyGroups(false);
+      // setTotalMyGroups(res["data"].length)
+
+      // setGroupName('')
+    });
+      // .filter((p) => p.vote_id === parseInt(e.currentTarget.attributes.vote_id.value))
+      // console.log(selectedVotingSection.filter((vs) => vs.poll_id = parseInt(e.currentTarget.attributes.poll_id.value)))
+      // console.log(e.target.id)
+      // console.log("handleSubmitMe: poll_id / vote_id: ", e.target.attributes.poll_id.value + " / " + e.target.attributes.vote_id.value)
+      // console.log("submit:", votingResults.filter(vr => vr.poll_id ===  parseInt(e.target.attributes.poll_id.value) && vr.vote_id === parseInt(e.target.attributes.vote_id.value))[0].vote_detail_id)
     };
 
+    // const handleSubmitForm = (e) => {
+    //   e.preventDefault()
+    //   console.clear()
+    //   console.log("handle Submit Click Form Start")
+    //   console.log("e: ", e)
+    //   console.log("e.target: ", e.target)
+    //   console.log("e.target: ", e.targetform)
+    //   // console.log(inputs)
+    //   console.log("handle Submit Click Form End")
+    // }
+
     const handleOptionClick = (e) => {
-      console.log("handleOptionClick ", e)
-      console.log("handleOptionClick vote_detail_id", e.target.id);
-      setSelectedOption(parseInt(e.target.id));
+      const updatedVotingSection = votingSection.slice()
+      // console.log("votingSection before :", votingSection)
+      updatedVotingSection.map((vs) => {vs.poll_id === parseInt(e.target.attributes.poll_id.value) ?
+                                            vs.data.map((d) => {d.selected_vote_detail_id = d.vote_id === parseInt(e.target.attributes.vote_id.value) ?
+                                                parseInt(e.target.id) : d.selected_vote_detail_id}):
+                                        void 0})
+
+      setVotingSection(updatedVotingSection)
+      // console.log("votingSection after :", votingSection)
     };
   
     useEffect(() => {
@@ -84,14 +143,7 @@ function VoteMain(props) {
       if (e.target.name === 'participatingpoll')
       {
         setSelectedParticipatingPollIndexId(selectedParticipatingPollIndexId => selectedParticipatingPollIndexId + parseInt(e.target.id))
-        // console.log('Selected Participating Poll: ', participatingPolls[selectedParticipatingPollIndexId + parseInt(e.target.id)])
-        // console.log('Selected Participating Poll Poll_id: ', participatingPolls[selectedParticipatingPollIndexId + parseInt(e.target.id)]['poll_id'])
         setSelectedParticipatingPollId(participatingPolls[selectedParticipatingPollIndexId + parseInt(e.target.id)]['poll_id'])
-        // setSelectedParticipatingPollId(participatingPolls[selectedParticipatingPollId + parseInt(e.target.id)]['poll_id'])
-        // console.log(participatingPolls[selectedParticipatingPollIndexId + parseInt(e.target.id)]['poll_id'])
-        // console.log(participatingPolls[selectedParticipatingPollIndexId + parseInt(e.target.id)]['poll_name'])
-        // selectedParticipatingPollId(participatingPolls[selectedParticipatingPollId + parseInt(e.target.id)]['poll_id'])
-        // console.log(selectedParticipatingPollIndexId + parseInt(e.target.id))
       }
     }
 
@@ -156,8 +208,15 @@ function VoteMain(props) {
                               vote.data.map((vd) => {
                                 return (
                                   <div key={vd.vote_title} >
+                                    {/* <form tag = {vd.vote_title} onSubmit={handleSubmitForm}> */}
                                     <div className="activePollTitle">{vd.vote_title}</div>
                                     {vd.vote_detail.map((vdd) => {
+                                      // console.log(vote.poll_id, vd.vote_id)
+                                      // console.log(votingResults)
+                                      // console.log(votingResults.filter(vr => vr.poll_id === vote.poll_id))
+                                      
+                                      // console.log(votingResults.filter(vr => vr.poll_id === vote.poll_id && vr.vote_id === vd.vote_id)[0].vote_detail_id === vdd.vote_detail_id ? true : false)
+                                      // console.log(votingResults.filter(vr => vr.poll_id === vote.poll_id && vr.vote_id === vd.vote_id))
                                       return(
                                           <div key={vdd.vote_detail_id} className="activePollOptions">
                                             <div className="form-check">
@@ -167,8 +226,13 @@ function VoteMain(props) {
                                                 name={vd.vote_title}
                                                 value={vdd.option}
                                                 id={vdd.vote_detail_id}
-                                                checked={vdd.vote_detail_id === selectedOption}
+                                                poll_id = {vote.poll_id}
+                                                vote_id = {vd.vote_id}
+                                                // checked={vdd.vote_detail_id === selectedOption}
+                                                // checked={votingResults.filter(vr => vr.poll_id === vote.poll_id && vr.vote_id === vd.vote_id)[0].vote_detail_id === vdd.vote_detail_id ? true : false}
+                                                checked={vdd.vote_detail_id === vd.selected_vote_detail_id ? true : false}
                                                 onChange={handleOptionClick}
+                                                option = {vdd['option']}
                                               />
                                               <label
                                                 className="form-check-label"
@@ -183,20 +247,44 @@ function VoteMain(props) {
                                     }
                                     <div className="activePollActionsContainer">
                                       <button
+                                        name = {vd.vote_id.toString()}
+                                        id = {vd.vote_id.toString()} 
+                                        poll_id = {vote.poll_id}
+                                        vote_id = {vd.vote_id}
+                                        value = {vd.vote_id}
                                         className="activePollActionButton"
                                         onClick={handleSubmitClick}
-                                        disabled={pollCount === 0}
+                                        type="submit"
                                       >
                                         <span className="pollActionText"> Submit </span>
+                                        {/* Submit */}
                                       </button>
-                                      <button
+                                      {/* <button 
+                                        name = {vd.vote_id.toString()}
+                                        id = {vd.vote_id.toString()} 
+                                        poll_id = {vote.poll_id}
+                                        vote_id = {vd.vote_id}
+                                        value = {vd.vote_id}
+                                        className="activePollActionButton"
+                                        onClick={handleSubmitClick}
+                                        type="submit"
+                                      >
+                                        Submit 2
+                                      </button> */}
+                                      
+                                      {/* <button
                                         className="activePollActionButton"
                                         onClick={handleCancelClick}
                                         disabled={pollCount === 0}
                                       >
                                         <span className="pollActionText"> Cancel </span>
-                                      </button>
+                                      </button> */}
+
+                                      {/* <input type="submit" value = "submit form"/> */}
+                                    
                                     </div>
+                                    
+                                    {/* </form> */}
                                   </div>
                                 )
                               })
