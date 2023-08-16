@@ -58,7 +58,7 @@ function Footer(props)
             <div className='footerContainer'>
                 <div className='footer'>
                     <div className='footerText'>
-                        <span> CWC - 2023 &#169; </span>
+                        <span> Polls - 2023 &#169; </span>
                     </div>
                 </div>
             </div>
