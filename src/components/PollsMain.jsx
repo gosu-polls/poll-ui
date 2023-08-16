@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Collapsible } from './utils/Collapsible';
 import { GroupMain } from "./GroupMain";
 import { VoteMain } from "./VoteMain";
+// import { VoteMainTest } from "./VoteMainTest";
 import { PollHistoryList } from "./PollHistoryList";
 import { PollHistoryDetail } from "./PollHistoryDetail";
 import "./css/Poll.css";
@@ -41,6 +42,7 @@ function PollsMain(props) {
       </Collapsible>
       
       <VoteMain />
+      {/* <VoteMainTest /> */}
       <PollHistory />
     </>
   );
