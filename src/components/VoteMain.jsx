@@ -48,6 +48,31 @@ function VoteMain(props) {
       }
     }
 
+    const handleCalcPoints = async (e) => {
+      // console.log(e.target)
+      let pollId = parseInt(e.target.attributes.poll_id.value)
+      // console.log(pollId)
+      await fetch("http://localhost:3003/calcpoints",
+      {
+          method: "PUT",
+          headers: {
+              "Accept" : "application/json",
+              "Content-Type": "application/json",
+              "Token": sessionStorage.getItem("user")
+          },
+          body: JSON.stringify(
+              {
+                poll_id : pollId
+              }
+          )
+      }).then((res) => res.json()).then(res => {
+          // console.log(res)
+          // // console.log(res["data"])
+          // setVotingSection(res["data"])
+          // setActiveTab("Votes")
+      });
+    }
+
     return (
       <>
         <div className="activePollContainer">
@@ -93,6 +118,32 @@ function VoteMain(props) {
                   > 
                     &gt;
                   </button>
+                  </span>
+                  <span>
+{/*                     
+                    {console.log(participatingPolls)}
+                    {console.log(participatingPolls[selectedParticipatingPollIndexId]['is_admin'])}
+                    {console.log(selectedParticipatingPollId)}
+                    {
+                      (selectedParticipatingPollId > 0 && participatingPolls[selectedParticipatingPollId]['is_admin'] === 'Y') && 'Calc'
+                    } */}
+                    {
+                      participatingPolls.map((poll) => {
+                        return(
+                          (poll.poll_id === selectedParticipatingPollId && poll.is_admin === 'Y' &&
+                            <span key = {poll.poll_id}>
+                              <button
+                                className="adminCalculatePoints"
+                                poll_id = {poll.poll_id}
+                                onClick={handleCalcPoints}
+                              >
+                                Calculate Points
+                              </button>
+                            </span>
+                          )
+                        )
+                      })
+                    }
                   </span>
                 </div>
               </>
