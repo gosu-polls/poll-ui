@@ -27,10 +27,10 @@ function ActivePoll(props) {
       setSelectedOption(-1);
     };
     const handleSubmitClick = (e) => {
-      console.log(selectedOption);
+      // console.log(selectedOption);
     };
     const handleOptionClick = (e) => {
-      console.log(e.target.id);
+      // console.log(e.target.id);
       setSelectedOption(parseInt(e.target.id));
     };
   

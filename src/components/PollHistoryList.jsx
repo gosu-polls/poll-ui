@@ -24,7 +24,7 @@ function PollHistoryList(props) {
   };
 
   const handlePollHistoryItemClick = (e) => {
-    console.log(e.target.id);
+    // console.log(e.target.id);
     setSelectedItem(parseInt(e.target.id));
   };
 

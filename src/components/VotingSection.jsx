@@ -45,9 +45,9 @@ function VotingSection(props) {
         let voteId = parseInt(e.currentTarget.attributes.vote_id.value)
         let selectedVoteId = votingSection.filter((vs) => vs.poll_id === parseInt(e.currentTarget.attributes.poll_id.value))[0].data.filter((p) => p.vote_id === parseInt(e.currentTarget.attributes.vote_id.value))[0].selected_vote_detail_id
         
-        console.log(parseInt(e.currentTarget.attributes.poll_id.value), 
-                    parseInt(e.currentTarget.attributes.vote_id.value), 
-                    votingSection.filter((vs) => vs.poll_id === parseInt(e.currentTarget.attributes.poll_id.value))[0].data.filter((p) => p.vote_id === parseInt(e.currentTarget.attributes.vote_id.value))[0].selected_vote_detail_id)
+        // console.log(parseInt(e.currentTarget.attributes.poll_id.value), 
+        //             parseInt(e.currentTarget.attributes.vote_id.value), 
+        //             votingSection.filter((vs) => vs.poll_id === parseInt(e.currentTarget.attributes.poll_id.value))[0].data.filter((p) => p.vote_id === parseInt(e.currentTarget.attributes.vote_id.value))[0].selected_vote_detail_id)
         
         await fetch("http://localhost:3003/savevote",
         {
@@ -66,8 +66,8 @@ function VotingSection(props) {
           )
         }
       ).then((res) => res.json()).then(res => {
-        console.log(res)
-        console.log(res["data"])
+        // console.log(res)
+        // console.log(res["data"])
       });
     };
 
@@ -75,7 +75,7 @@ function VotingSection(props) {
         let pollId = parseInt(e.currentTarget.attributes.poll_id.value)
         let voteId = parseInt(e.currentTarget.attributes.vote_id.value)
         let isOpen = e.currentTarget.attributes.is_open.value
-        console.log(pollId, voteId, isOpen)
+        // console.log(pollId, voteId, isOpen)
         await fetch("http://localhost:3003/freezevote",
         {
             method: "POST",
@@ -114,15 +114,15 @@ function VotingSection(props) {
                                                         : void 0})
   
         setVotingSection(updatedVotingSection)
-        console.log("after : ", votingSection)
+        // console.log("after : ", votingSection)
     }
 
     const handleRightAnswerSubmit = async (e) => {
-        console.log(e.currentTarget)
+        // console.log(e.currentTarget)
         let pollId = parseInt(e.currentTarget.attributes.poll_id.value)
         let voteId = parseInt(e.currentTarget.attributes.vote_id.value)
         let voteDetail = votingSection.filter((vs) => vs.poll_id === pollId)[0].data.filter((p) => p.vote_id === voteId)[0]['vote_detail']
-        console.log(pollId, voteId, voteDetail)
+        // console.log(pollId, voteId, voteDetail)
  
         await fetch("http://localhost:3003/submitanswer",
         {
@@ -200,6 +200,7 @@ function VotingSection(props) {
                                                             checked={vdd.vote_detail_id === vd.selected_vote_detail_id ? true : false}
                                                             onChange={handleOptionClick}
                                                             option = {vdd['option']}
+                                                            disabled = {vd.is_open === "Y" ? false : true }
                                                         />
                                                         <label
                                                             className="form-check-label"
@@ -231,6 +232,68 @@ function VotingSection(props) {
                                         : 
                                             <>
                                                 <div className="form-check">
+
+                                                <div className="container text-center">
+                                                    <div className="row">
+                                                        <div className="col adminLabel">
+                                                            Click to {vd.is_open === "Y" ? "Freeze Vote" : "Unfreeze Vote" } 
+                                                        </div>
+                                                        <div className="col">
+                                                            <button
+                                                                className="activePollActionButton"
+                                                                poll_id = {vote.poll_id}
+                                                                vote_id = {vd.vote_id}
+                                                                is_open = {vd.is_open}
+                                                                onClick={handleVoteFreeze}
+                                                            >
+                                                                <span className="adminFreezeButton"> {vd.is_open === "Y" ? "Freeze Vote" : "Unfreeze Vote" } </span>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div className="row">
+                                                        <div className="col adminLabel">
+                                                            {/* Current Answer Selected:  
+                                                                { vd.vote_detail.map((vdd) => {
+                                                                    return vdd.is_right === 'Y' ? vdd.option : void 0
+                                                                }) } */}
+                                                            Update the Right Answer
+                                                        </div>
+                                                    </div>
+                                                    <div className="row">
+
+                                                        <div className="col">
+                                                            
+                                                        <Select 
+                                                                    // defaultValue={task} 
+                                                                    onChange={handleRightAnswerChange} 
+                                                                    // value={vd.vote_detail}
+                                                                    className='adminRightAnswerDropDown' 
+                                                                    options = { vd.vote_detail.map((vdd) => {
+                                                                        return {'label': vdd.option, 'value': vdd.vote_detail_id, 'poll_id': vote.poll_id, 'vote_id': vd.vote_id}
+                                                                    }) }
+                                                            />
+                                                        </div>
+                                                        <div className="col">
+
+                                                            <button
+                                                                className="activePollActionButton"
+                                                                poll_id = {vote.poll_id}
+                                                                vote_id = {vd.vote_id}
+                                                                vote_detail_id = {vd.vote_detail_id}
+                                                                onClick={handleRightAnswerSubmit}
+                                                            >
+                                                                <span className="adminFreezeButton"> Submit Answer</span>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                                </div>
+
+                                                {/* <div className="form-check">
                                                     <button
                                                         className="activePollActionButton"
                                                         poll_id = {vote.poll_id}
@@ -268,7 +331,7 @@ function VotingSection(props) {
                                                                 <span className="adminFreezeButton"> Submit Answer </span>
                                                             </button>
                                                         </div>
-                                                </div>
+                                                </div> */}
                                             </>
                                         }
                                         </div>
