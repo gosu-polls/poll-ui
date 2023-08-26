@@ -12,7 +12,7 @@ function VoteMain(props) {
 
     // GET API Calls
     const loadParticipatingPolls = async () => {
-      await fetch("http://localhost:3003/participatingpolls", {
+      await fetch(" https://polls-api.azurewebsites.net/participatingpolls", {
           method: "GET",
           headers: {
             "Accept": "application/json",
@@ -52,7 +52,7 @@ function VoteMain(props) {
       // console.log(e.target)
       let pollId = parseInt(e.target.attributes.poll_id.value)
       // console.log(pollId)
-      await fetch("http://localhost:3003/calcpoints",
+      await fetch(" https://polls-api.azurewebsites.net/calcpoints",
       {
           method: "PUT",
           headers: {

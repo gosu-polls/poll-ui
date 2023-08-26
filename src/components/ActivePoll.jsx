@@ -8,7 +8,7 @@ function ActivePoll(props) {
     const [selectedOption, setSelectedOption] = useState(-1);
   
     const loadPolls = async () => {
-      await fetch("http://localhost:3003/poll", {
+      await fetch(" https://polls-api.azurewebsites.net/poll", {
         method: "GET",
         headers: {
           Accept: "application/json",

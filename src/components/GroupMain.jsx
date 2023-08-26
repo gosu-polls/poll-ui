@@ -23,7 +23,7 @@ function GroupMain(props) {
 
   //  GET API Calls
   const loadAvailablePolls = async () => {
-    await fetch("http://localhost:3003/availablepolls", {
+    await fetch(" https://polls-api.azurewebsites.net/availablepolls", {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -41,7 +41,7 @@ function GroupMain(props) {
   };
 
   const loadMyGroups = async () => {
-    await fetch("http://localhost:3003/mygroups", {
+    await fetch(" https://polls-api.azurewebsites.net/mygroups", {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -60,7 +60,7 @@ function GroupMain(props) {
 
   // POST API Calls
   const handleCreateGroupClick = async (e) => {
-    await fetch("http://localhost:3003/creategroup",
+    await fetch(" https://polls-api.azurewebsites.net/creategroup",
       {
         method: "POST",
         headers: {
@@ -89,7 +89,7 @@ function GroupMain(props) {
   }
 
   const handleJoinGroupClick = async (e) => {
-    await fetch("http://localhost:3003/joingroup",
+    await fetch(" https://polls-api.azurewebsites.net/joingroup",
       {
         method: "POST",
         headers: {

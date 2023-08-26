@@ -9,8 +9,9 @@ function GoogleAuth(props) {
 
   const login = useGoogleLogin({
     onSuccess: (codeResponse) => {
-      fetch("http://localhost:3003/login/", {
+      fetch(" https://polls-api.azurewebsites.net/login", {
         method: "POST",
+        mode: 'cors',
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",

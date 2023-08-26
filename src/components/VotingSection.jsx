@@ -14,7 +14,7 @@ function VotingSection(props) {
     }
     
     const loadPolls = async () => {
-        await fetch("http://localhost:3003/votesection", {
+        await fetch(" https://polls-api.azurewebsites.net/votesection", {
           method: "GET",
           headers: {
             "Accept": "application/json",
@@ -49,7 +49,7 @@ function VotingSection(props) {
         //             parseInt(e.currentTarget.attributes.vote_id.value), 
         //             votingSection.filter((vs) => vs.poll_id === parseInt(e.currentTarget.attributes.poll_id.value))[0].data.filter((p) => p.vote_id === parseInt(e.currentTarget.attributes.vote_id.value))[0].selected_vote_detail_id)
         
-        await fetch("http://localhost:3003/savevote",
+        await fetch(" https://polls-api.azurewebsites.net/savevote",
         {
           method: "POST",
           headers: {
@@ -76,7 +76,7 @@ function VotingSection(props) {
         let voteId = parseInt(e.currentTarget.attributes.vote_id.value)
         let isOpen = e.currentTarget.attributes.is_open.value
         // console.log(pollId, voteId, isOpen)
-        await fetch("http://localhost:3003/freezevote",
+        await fetch(" https://polls-api.azurewebsites.net/freezevote",
         {
             method: "POST",
             headers: {
@@ -124,7 +124,7 @@ function VotingSection(props) {
         let voteDetail = votingSection.filter((vs) => vs.poll_id === pollId)[0].data.filter((p) => p.vote_id === voteId)[0]['vote_detail']
         // console.log(pollId, voteId, voteDetail)
  
-        await fetch("http://localhost:3003/submitanswer",
+        await fetch(" https://polls-api.azurewebsites.net/submitanswer",
         {
             method: "PUT",
             headers: {

@@ -3,6 +3,8 @@ import { Collapsible } from './utils/Collapsible';
 import { GroupMain } from "./GroupMain";
 import { VoteMain } from "./VoteMain";
 // import { VoteMainTest } from "./VoteMainTest";
+// import { Report } from "./Report";
+import { Dashboard } from "./Chartjs";
 import { PollHistoryList } from "./PollHistoryList";
 import { PollHistoryDetail } from "./PollHistoryDetail";
 import "./css/Poll.css";
@@ -42,6 +44,8 @@ function PollsMain(props) {
       </Collapsible>
       
       <VoteMain />
+      {/* <Dashboard /> */}
+      {/* <Report /> */}
       {/* <VoteMainTest /> */}
       <PollHistory />
     </>

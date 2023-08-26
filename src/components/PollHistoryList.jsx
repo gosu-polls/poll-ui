@@ -7,7 +7,7 @@ function PollHistoryList(props) {
   const [selectedItem, setSelectedItem] = useState(-1);
 
   const loadPollHistory = async () => {
-    await fetch("http://localhost:3003/pollhistory", {
+    await fetch(" https://polls-api.azurewebsites.net/pollhistory", {
       method: "GET",
       headers: {
         "Accept": "application/json",
