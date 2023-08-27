@@ -275,10 +275,12 @@
 }
 
 .pollHistoryContainer{
-    background-color: rgb(146, 21, 21);
+    background-color: rgb(212, 202, 202);
     border-radius: 5px;
     margin: 5px 5px 5px 5px;
     padding-top: 5px;
+    width:auto;
+    height:auto;
 }
 
 .pollHistoryListHeader {
@@ -331,13 +333,7 @@
     font-weight: 600;
 
 }
-.pollHistoryResultText {
-    text-align: center;
-}
 
-.pollHistoryResultTextPercentage {
-    margin-left: 2px;
-}
 .pollHistoryResults {
     /* margin-top: 10px;
     margin-bottom: 15px;
@@ -507,3 +503,70 @@
   ul.nav li.active {
     background: #5c88a2;
   }
+
+.pollHistoryStack {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 100%;    
+}
+.progress.pollHistoryResults {
+    height: 30px;
+    position: relative;    
+    margin-left: 20px;    
+    color:black;    
+    text-align: left !important;
+}
+.progress-bar
+{
+    text-align: left !important;
+    color:black !important;  
+    background-color: #49c3ff !important;         
+}
+.pollHistoryResultText {
+    position: absolute;
+    top: 14px;    
+    left: 10px;
+    font-weight: bold;      
+}
+.pollHistoryResultTextPercentage {
+    margin-top: 14px;    
+    margin-left: 2px;
+}
+.pollHistoryResultProfile {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: end;
+    position:inherit;
+    margin-left: 65%;    
+}
+
+.match{
+    color:white;    
+}
+
+.carousel-item
+{
+    display: block !important;
+}
+
+.progress-barW
+{
+    text-align: left !important;
+    color:black !important;
+    background-color: green !important;        
+}
+
+.pollHistoryDashboard {
+    padding-top: 10px;
+    background-color: rgb(229, 172, 151);
+    padding: 1px;
+    border-radius: 5px;    
+    margin: 5px 5px 5px 5px;
+    color: #49400f;
+    font-weight: 600;
+    width:auto;
+    height: auto;
+    
+}

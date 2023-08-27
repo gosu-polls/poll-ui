@@ -4,8 +4,8 @@ import { GroupMain } from "./GroupMain";
 import { VoteMain } from "./VoteMain";
 // import { VoteMainTest } from "./VoteMainTest";
 import { PollHistoryList } from "./PollHistoryList";
-import { PollHistoryDetail } from "./PollHistoryDetail";
 import "./css/Poll.css";
+import PollHistoryDashboard from "./PollHistoryDashboard";
 
 
 function PollHistory(props) {
@@ -19,11 +19,12 @@ function PollHistory(props) {
       <div className="pollHistoryContainer">
         <div className="container">
           <div className="row">
-            <div className="col-4 pollHistoryListHeader">
-                <PollHistoryList />
+            <div className="col pollHistoryListHeader">              
+                <PollHistoryList />                
             </div>
-            <div className="col pollHistory">
-              <PollHistoryDetail />
+            <div className="col pollHistoryDashboard">
+            {/* <PollHistoryDetail  />*/}
+            <PollHistoryDashboard />
             </div>
           </div>
          </div>

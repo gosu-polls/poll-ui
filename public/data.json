@@ -1,0 +1,111 @@
+{
+    "data": {
+        "history": [
+            {
+                "id": 1,
+                "question": "ENG vs NZL",
+                "countries": ["England","New Zealand","NR/Tie"],
+                "options": 
+                {
+                    "option1": [
+                        {
+                            "email": "kirankumar.gosu@gmail.com",
+                            "initials": "KG"
+                        },
+                        {
+                            "email": "sivapragasam.m@gmail.com",
+                            "initials": "SM"
+                        },
+                        {
+                            "email": "arunmozhidevan.g@gmail.com",
+                            "initials": "AG"
+                        }
+                    ],
+                    "option2": [
+                        {
+                            "email": "suresh.nalikela@gmail.com",
+                            "initials": "SN"
+                        },
+                        {
+                            "email": "rasheed.abdur@gmail.com",
+                            "initials": "RA"
+                        }
+                    ],
+                    "option3": [                        
+                    ]
+                },
+                "right": "England"
+            },
+            {
+                "id": 2,
+                "question": "NED vs PAK",
+                "countries": ["Netherland","Pakistan","NR/Tie"],
+                "options": 
+                {
+                    "option1": [
+                        {
+                            "email": "kirankumar.gosu@gmail.com",
+                            "initials": "KG"
+                        },
+                        {
+                            "email": "sivapragasam.m@gmail.com",
+                            "initials": "SM"
+                        }                        
+                    ],
+                    "option2": [
+                        {
+                            "email": "arunmozhidevan.g@gmail.com",
+                            "initials": "AG"
+                        },
+                        {
+                            "email": "suresh.nalikela@gmail.com",
+                            "initials": "SN"
+                        },
+                        {
+                            "email": "rasheed.abdur@gmail.com",
+                            "initials": "RA"
+                        }
+                    ],
+                    "option3": [                       
+                    ]
+                },
+                "right": "Netherland"
+            },
+            {
+                "id": 3,
+                "question": "AFG vs BAN",
+                "countries": ["Afghanistan","Bangladesh","NR/Tie"],
+                "options": 
+                {
+                    "option1": [
+                        {
+                            "email": "kirankumar.gosu@gmail.com",
+                            "initials": "KG"
+                        },
+                        {
+                            "email": "sivapragasam.m@gmail.com",
+                            "initials": "SM"
+                        },
+                        {
+                            "email": "suresh.nalikela@gmail.com",
+                            "initials": "SN"
+                        },
+                        {
+                            "email": "rasheed.abdur@gmail.com",
+                            "initials": "RA"
+                        }                      
+                    ],
+                    "option2": [
+                        {
+                            "email": "arunmozhidevan.g@gmail.com",
+                            "initials": "AG"
+                        }
+                    ],
+                    "option3": [                       
+                    ]
+                },
+                "right": "Afghanistan"
+            }
+        ]
+    }
+}
