@@ -31,10 +31,10 @@ function VotingSection(props) {
     
     const handleOptionClick = (e) => {
         const updatedVotingSection = votingSection.slice()
-        updatedVotingSection.map((vs) => {vs.poll_id === parseInt(e.target.attributes.poll_id.value) ?
-                                              vs.data.map((d) => {d.selected_vote_detail_id = d.vote_id === parseInt(e.target.attributes.vote_id.value) ?
-                                                  parseInt(e.target.id) : d.selected_vote_detail_id}):
-                                          void 0})
+        updatedVotingSection.map((vs) => (vs.poll_id === parseInt(e.target.attributes.poll_id.value) ?
+                                              vs.data.map((d) => (d.selected_vote_detail_id = d.vote_id === parseInt(e.target.attributes.vote_id.value) ?
+                                                  parseInt(e.target.id) : d.selected_vote_detail_id)):
+                                          void 0))
   
         setVotingSection(updatedVotingSection)
       };
@@ -107,11 +107,11 @@ function VotingSection(props) {
         // console.log("before : ", votingSection)
         const updatedVotingSection = votingSection.slice()
 
-        updatedVotingSection.map((vs) => {vs.poll_id === parseInt(e.poll_id) ?
-                                                            vs.data.map((d) => {d.vote_id == parseInt(e.vote_id) ?
-                                                                d.vote_detail.map((vdd) => {vdd.is_right = vdd.vote_detail_id == parseInt(e.value) ? 'Y' : 'N'})
-                                                            : void 0})
-                                                        : void 0})
+        updatedVotingSection.map((vs) => (vs.poll_id === parseInt(e.poll_id) ?
+                                                            vs.data.map((d) => (d.vote_id === parseInt(e.vote_id) ?
+                                                                d.vote_detail.map((vdd) => (vdd.is_right = vdd.vote_detail_id === parseInt(e.value) ? 'Y' : 'N'))
+                                                            : void 0))
+                                                        : void 0))
   
         setVotingSection(updatedVotingSection)
         // console.log("after : ", votingSection)

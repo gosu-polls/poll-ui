@@ -1,12 +1,9 @@
 import { useEffect, useState } from "react";
 import "./css/Poll.css";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faArrowUpFromBracket} from '@fortawesome/free-solid-svg-icons'
 import {WhatsappShareButton, WhatsappIcon} from "react-share";
 
 function GroupMain(props) {
 
-  const [selectedPoll, setSelectedPoll] = useState(-1);
   const [groupName, setGroupName] = useState('')
   const [groupCode, setGroupCode] = useState('')
   

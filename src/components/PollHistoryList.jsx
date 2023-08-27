@@ -23,11 +23,6 @@ function PollHistoryList(props) {
       });
   };
 
-  const handlePollHistoryItemClick = (e) => {
-    // console.log(e.target.id);
-    setSelectedItem(parseInt(e.target.id));
-  };
-
   useEffect(() => {
     setPollHistory([]);
     setLoading(true);
@@ -55,7 +50,6 @@ function PollHistoryList(props) {
                           ? "list-group-item pollHistoryListDetail active"
                           : "list-group-item pollHistoryListDetail"
                       }
-                      // onClick={handlePollHistoryItemClick}
                       onClick={() => setSelectedItem(poll.id)}
                     >
                       {poll.question}

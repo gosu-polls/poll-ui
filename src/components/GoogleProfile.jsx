@@ -58,7 +58,7 @@ function GoogleAuth(props) {
                 className="profileImg"
                 src={userSessionCookie.picture}
                 referrerPolicy="no-referrer"
-                alt="user image"
+                alt={userSessionCookie.name}
               />
             </span>
             <span>

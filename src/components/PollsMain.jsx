@@ -4,7 +4,7 @@ import { GroupMain } from "./GroupMain";
 import { VoteMain } from "./VoteMain";
 // import { VoteMainTest } from "./VoteMainTest";
 // import { Report } from "./Report";
-import { Dashboard } from "./Chartjs";
+// import { Dashboard } from "./Chartjs";
 import { PollHistoryList } from "./PollHistoryList";
 import { PollHistoryDetail } from "./PollHistoryDetail";
 import "./css/Poll.css";

@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import "./css/Poll.css";
 
 function PollHistoryDetail(props) {
