@@ -74,7 +74,7 @@ function GoogleAuth(props) {
         </>
       ) : (
         <button className="googleLogin" onClick={() => login()}>
-          Sign in{" "}
+          Login
         </button>
       )}
     </div>

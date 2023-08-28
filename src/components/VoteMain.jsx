@@ -84,7 +84,7 @@ function VoteMain(props) {
               <>
                 <div className="participatingPollsContainer">
                   <span className="participatingPollsText">
-                    Participating Polls
+                    My Polls
                   </span>
                   <span>
                     <button className={selectedParticipatingPollIndexId > 0 ? "participatingPollNavBtn participatingPollNavLeftBtn" : "participatingPollNavBtnDisabled participatingPollNavLeftBtn"}
