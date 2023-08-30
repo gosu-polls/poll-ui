@@ -131,9 +131,11 @@ function GroupMain(props) {
  
   // Hooks
   useEffect(() => {
-    setAvailablePolls([]);
-    loadAvailablePolls();
-    loadMyGroups();
+    if (sessionStorage.getItem("user") != null){
+      setAvailablePolls([]);
+      loadAvailablePolls();
+      loadMyGroups();
+    }
 
   }, [props]);
 
