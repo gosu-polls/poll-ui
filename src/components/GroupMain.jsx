@@ -220,8 +220,8 @@ function GroupMain(props) {
                             <span key={group.group_id}>
                               {group.group_name} 
                               <WhatsappShareButton
-                                url={"polls.com/" + group.group_code}
-                                title={"You are invited to participate in " + group.group_name}
+                                url={"https://polls-by-gosu.azurewebsites.net"}
+                                title={"You are invited to participate in Polls under Group Id (" + group.group_name + "). Use " + group.group_code}
                                 separator=" : "
                                 className='myGroupsCardShareButton'
                               >

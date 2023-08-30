@@ -224,6 +224,7 @@ function VotingSection(props) {
                                             )
                                             }
                                             <div className="activePollActionsContainer">
+                                                {console.log(vd.is_open)}
                                             <button
                                                 name = {vd.vote_id.toString()}
                                                 id = {vd.vote_id.toString()} 
@@ -233,7 +234,7 @@ function VotingSection(props) {
                                                 className="activePollActionButton"
                                                 onClick={handleSubmitClick}
                                                 type="submit"
-                                                disabled = {vd.is_open === "N"}
+                                                disabled = {vd.is_open !== 'Y'}
                                             >
                                                 <span className="pollActionText"> {vd.is_open === "Y" ? "Submit" : "Frozen" } </span>
                                             </button>
