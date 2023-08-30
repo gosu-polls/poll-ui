@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./css/Poll.css";
 import { VotingSection } from "./VotingSection";
+import { VoteResults } from "./VoteResults";
 
 function VoteMain(props) {
     
@@ -12,7 +13,8 @@ function VoteMain(props) {
 
     // GET API Calls
     const loadParticipatingPolls = async () => {
-      await fetch(" https://polls-api.azurewebsites.net/participatingpolls", {
+      let url = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_PROD_API_HOST : process.env.REACT_APP_DEV_API_HOST
+      await fetch(`${url}/participatingpolls`, {
           method: "GET",
           headers: {
             "Accept": "application/json",
@@ -52,7 +54,8 @@ function VoteMain(props) {
       // console.log(e.target)
       let pollId = parseInt(e.target.attributes.poll_id.value)
       // console.log(pollId)
-      await fetch(" https://polls-api.azurewebsites.net/calcpoints",
+      let url = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_PROD_API_HOST : process.env.REACT_APP_DEV_API_HOST
+      await fetch(`${url}/calcpoints`,
       {
           method: "PUT",
           headers: {
@@ -77,6 +80,7 @@ function VoteMain(props) {
       <>
         <div className="activePollContainer">
           {participatingPollsLoading ? (
+             
             <p> Loading...</p>
           ) : (
             <>
@@ -120,13 +124,6 @@ function VoteMain(props) {
                   </button>
                   </span>
                   <span>
-{/*                     
-                    {console.log(participatingPolls)}
-                    {console.log(participatingPolls[selectedParticipatingPollIndexId]['is_admin'])}
-                    {console.log(selectedParticipatingPollId)}
-                    {
-                      (selectedParticipatingPollId > 0 && participatingPolls[selectedParticipatingPollId]['is_admin'] === 'Y') && 'Calc'
-                    } */}
                     {
                       participatingPolls.map((poll) => {
                         return(
@@ -137,7 +134,7 @@ function VoteMain(props) {
                                 poll_id = {poll.poll_id}
                                 onClick={handleCalcPoints}
                               >
-                                Calculate Points
+                                +/-
                               </button>
                             </span>
                           )
@@ -154,6 +151,12 @@ function VoteMain(props) {
                 <VotingSection selectedParticipatingPollId={selectedParticipatingPollId}/>
               </>
               {/* Voting Section End */}
+              
+              {/* Vote Results Start */}
+              <>
+                {/* <VoteResults selectedParticipatingPollId={selectedParticipatingPollId}/> */}
+              </>
+              {/* Vote Results End */}
             </>
           )}
         </div>

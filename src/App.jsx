@@ -8,6 +8,7 @@ function App() {
     <>
       <div className="App">
         <header className="App-header"> </header>
+          {console.log("Env: ", process.env.NODE_ENV)}
           <Home />
       </div>
     </>

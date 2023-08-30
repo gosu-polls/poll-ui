@@ -20,7 +20,8 @@ function GroupMain(props) {
 
   //  GET API Calls
   const loadAvailablePolls = async () => {
-    await fetch(" https://polls-api.azurewebsites.net/availablepolls", {
+    let url = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_PROD_API_HOST : process.env.REACT_APP_DEV_API_HOST
+    await fetch(`${url}/availablepolls`, {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -38,7 +39,8 @@ function GroupMain(props) {
   };
 
   const loadMyGroups = async () => {
-    await fetch(" https://polls-api.azurewebsites.net/mygroups", {
+    let url = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_PROD_API_HOST : process.env.REACT_APP_DEV_API_HOST
+    await fetch(`${url}/mygroups`, {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -57,7 +59,8 @@ function GroupMain(props) {
 
   // POST API Calls
   const handleCreateGroupClick = async (e) => {
-    await fetch(" https://polls-api.azurewebsites.net/creategroup",
+    let url = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_PROD_API_HOST : process.env.REACT_APP_DEV_API_HOST
+    await fetch(`${url}/creategroup`,
       {
         method: "POST",
         headers: {
@@ -86,7 +89,8 @@ function GroupMain(props) {
   }
 
   const handleJoinGroupClick = async (e) => {
-    await fetch(" https://polls-api.azurewebsites.net/joingroup",
+    let url = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_PROD_API_HOST : process.env.REACT_APP_DEV_API_HOST
+    await fetch(`${url}/joingroup`,
       {
         method: "POST",
         headers: {

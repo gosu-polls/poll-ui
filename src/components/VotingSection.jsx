@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Select from 'react-select';
+// import Switch from "react-switch";
 import "./css/Poll.css";
 
 function VotingSection(props) {
@@ -14,7 +15,8 @@ function VotingSection(props) {
     }
     
     const loadPolls = async () => {
-        await fetch(" https://polls-api.azurewebsites.net/votesection", {
+        let url = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_PROD_API_HOST : process.env.REACT_APP_DEV_API_HOST
+        await fetch(`${url}/votesection`, {
           method: "GET",
           headers: {
             "Accept": "application/json",
@@ -48,8 +50,8 @@ function VotingSection(props) {
         // console.log(parseInt(e.currentTarget.attributes.poll_id.value), 
         //             parseInt(e.currentTarget.attributes.vote_id.value), 
         //             votingSection.filter((vs) => vs.poll_id === parseInt(e.currentTarget.attributes.poll_id.value))[0].data.filter((p) => p.vote_id === parseInt(e.currentTarget.attributes.vote_id.value))[0].selected_vote_detail_id)
-        
-        await fetch(" https://polls-api.azurewebsites.net/savevote",
+        let url = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_PROD_API_HOST : process.env.REACT_APP_DEV_API_HOST
+        await fetch(`${url}/savevote`,
         {
           method: "POST",
           headers: {
@@ -71,12 +73,20 @@ function VotingSection(props) {
       });
     };
 
+    // const handleVoteFreeze1 = async (e) => {
+    //     console.log(e)
+    //     // let pollId = parseInt(e.currentTarget.attributes.poll_id.value)
+    //     // let voteId = parseInt(e.currentTarget.attributes.vote_id.value)
+    //     // let isOpen = e.currentTarget.attributes.is_open.value
+    //     // console.log(pollId, voteId, isOpen)
+    // }
     const handleVoteFreeze = async (e) => {
         let pollId = parseInt(e.currentTarget.attributes.poll_id.value)
         let voteId = parseInt(e.currentTarget.attributes.vote_id.value)
         let isOpen = e.currentTarget.attributes.is_open.value
         // console.log(pollId, voteId, isOpen)
-        await fetch(" https://polls-api.azurewebsites.net/freezevote",
+        let url = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_PROD_API_HOST : process.env.REACT_APP_DEV_API_HOST
+        await fetch(`${url}/freezevote`,
         {
             method: "POST",
             headers: {
@@ -123,8 +133,8 @@ function VotingSection(props) {
         let voteId = parseInt(e.currentTarget.attributes.vote_id.value)
         let voteDetail = votingSection.filter((vs) => vs.poll_id === pollId)[0].data.filter((p) => p.vote_id === voteId)[0]['vote_detail']
         // console.log(pollId, voteId, voteDetail)
- 
-        await fetch(" https://polls-api.azurewebsites.net/submitanswer",
+        let url = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_PROD_API_HOST : process.env.REACT_APP_DEV_API_HOST
+        await fetch(`${url}/submitanswer`,
         {
             method: "PUT",
             headers: {
@@ -248,16 +258,22 @@ function VotingSection(props) {
                                                             >
                                                                 <span className="adminFreezeButton"> {vd.is_open === "Y" ? "Freeze Vote" : "Unfreeze Vote" } </span>
                                                             </button>
+
+                                                            {/* <Switch 
+                                                                poll_id = {vote.poll_id}
+                                                                vote_id = {vd.vote_id}
+                                                                is_open = {vd.is_open}
+                                                                value={vd.is_open}
+                                                                onChange={handleVoteFreeze1} 
+                                                                checked={!(vd.is_open === "Y")} 
+                                                            /> */}
+
                                                         </div>
                                                     </div>
 
 
                                                     <div className="row">
                                                         <div className="col adminLabel">
-                                                            {/* Current Answer Selected:  
-                                                                { vd.vote_detail.map((vdd) => {
-                                                                    return vdd.is_right === 'Y' ? vdd.option : void 0
-                                                                }) } */}
                                                             Update the Right Answer
                                                         </div>
                                                     </div>
@@ -293,45 +309,6 @@ function VotingSection(props) {
 
                                                 </div>
 
-                                                {/* <div className="form-check">
-                                                    <button
-                                                        className="activePollActionButton"
-                                                        poll_id = {vote.poll_id}
-                                                        vote_id = {vd.vote_id}
-                                                        is_open = {vd.is_open}
-                                                        onClick={handleVoteFreeze}
-                                                    >
-                                                        <span className="adminFreezeButton"> {vd.is_open === "Y" ? "Freeze Vote" : "Unfreeze Vote" } </span>
-                                                    </button>
-                                                </div>
-
-                                                <div className="form-check">
-                                                    <label
-                                                        className="pollActionText"
-                                                    >
-                                                        Select the Right Answer
-                                                    </label>
-                                                        <div> 
-                                                            <Select 
-                                                                    // defaultValue={task} 
-                                                                    onChange={handleRightAnswerChange} 
-                                                                    // value={vd.vote_detail}
-                                                                    className='adminRightAnswerDropDown' 
-                                                                    options = { vd.vote_detail.map((vdd) => {
-                                                                        return {'label': vdd.option, 'value': vdd.vote_detail_id, 'poll_id': vote.poll_id, 'vote_id': vd.vote_id}
-                                                                    }) }
-                                                            />
-                                                            <button
-                                                                className="activePollActionButton"
-                                                                poll_id = {vote.poll_id}
-                                                                vote_id = {vd.vote_id}
-                                                                vote_detail_id = {vd.vote_detail_id}
-                                                                onClick={handleRightAnswerSubmit}
-                                                            >
-                                                                <span className="adminFreezeButton"> Submit Answer </span>
-                                                            </button>
-                                                        </div>
-                                                </div> */}
                                             </>
                                         }
                                         </div>

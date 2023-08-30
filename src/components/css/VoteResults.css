@@ -1,0 +1,53 @@
+.voteResultContainer {
+    top: 0;
+    height: 20%;
+    margin: 5px 5px 5px 5px;
+    align-items: center;
+    align-content: center;
+    align-self: center;
+    padding: 1px;
+    border-radius: 5px;
+    background-color: #353434;
+    font-size: medium;
+}
+
+.voteResultTitle {
+    top: 0;
+    height: 20%;
+    /* width: 100%; */
+    margin: 5px 5px 5px 5px;
+    align-items: center;
+    align-content: center;
+    align-self: center;
+    padding: 1px;
+    border-radius: 5px;
+    background-color: #132a0f;
+    font-size: x-large;
+    text-align: center;
+    color: aliceblue;
+    font-weight: 900;
+}
+.voteResultListContainer {
+    background-color: brown;
+}
+
+.voteResultsGroupOption {
+    top: 0;
+    height: 20%;
+    /* width: 100%; */
+    margin: 5px 5px 5px 5px;
+    align-items: center;
+    align-content: center;
+    align-self: center;
+    padding: 1px;
+    border-radius: 5px;
+    background-color: #1a496b;
+    font-size: large;
+    color: aliceblue;
+    font-weight: 500;
+}
+
+.voteResultsData {
+    background-color: aliceblue;
+    border-radius: 5px;
+}

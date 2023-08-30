@@ -1,0 +1,50 @@
+.superUserContainer {
+    background-color: rgb(59, 72, 11);
+    color: azure;
+    border: none;
+    width: 100%;
+    align-items: center;
+    align-content: center;
+    align-self: center;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    letter-spacing: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    text-align: center;
+    
+    /* margin-top: 5px; */
+    /* margin-bottom: 5px; */
+}
+
+.resetCacheBtn {
+    margin-left: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+    /* margin-top: 2%; */
+    border: none;
+    background-color: #795555;
+    width: auto;
+    color: aliceblue;
+    font-size: small;
+    font-weight: bold;
+    font-weight: lighter;
+    border-width: 1px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+.superUserPollsDropDown{
+    font-size: xx-small;
+    font-stretch: condensed;
+    color: #0c0c0c;
+    height: auto;
+    /* padding-left: 10px; */
+    width: 100px;
+    margin-left: 5px;
+}
+
+.superUserColumn {
+    text-align: center;
+}

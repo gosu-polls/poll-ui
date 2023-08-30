@@ -1,4 +1,4 @@
-.groupsCollabsible {
+.groupsContainer {
     background-color: rgb(102, 4, 32);
     color: azure;
     border: none;
@@ -10,22 +10,54 @@
     border-top-right-radius: 5px;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     letter-spacing: 5px;
+    margin-bottom: 2px;
 
 }
-.content {
+.groupsContent {
     /* border: 1px solid rgb(227, 219, 7); */
     padding: 0.5rem;
     border-radius: 5px;
 }
     
-.contentParent {
+.groupsContentParent {
     height: 0px;
     overflow: hidden;
     transition: height ease 0.9s;
 }
     
-.contentShow {
+.groupsContentShow {
     height: 100px;
     transition: height ease 0.9s;
 }
 
+.superuserContainer {
+    background-color: rgb(102, 63, 4);
+    color: azure;
+    border: none;
+    width: 100%;
+    align-items: center;
+    align-content: center;
+    align-self: center;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    letter-spacing: 5px;
+    margin-bottom: 2px;
+}
+
+.superuserContent {
+    /* border: 1px solid rgb(227, 219, 7); */
+    padding: 0.5rem;
+    border-radius: 5px;
+}
+    
+.superuserContentParent {
+    height: 0px;
+    overflow: hidden;
+    transition: height ease 0.9s;
+}
+    
+.superuserContentShow {
+    height: 100px;
+    transition: height ease 0.9s;
+}

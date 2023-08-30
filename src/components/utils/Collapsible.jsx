@@ -10,11 +10,12 @@ const Collapsible = (props) => {
       };
       return (
         <div>
+            {/* {console.log(props)} */}
             <div>
-                <button className='groupsCollabsible' onClick={handleExpandCollapse}>{props.label}</button>
+                <button className={props.tag + 'Container'} onClick={handleExpandCollapse}>{props.label}</button>
             </div>
-            <div className={open ? "contentShow" : "contentParent"}>
-                <div className='content'> 
+            <div className={open ? props.tag + 'ContentShow' : props.tag + 'ContentParent'}>
+                <div className={props.tag + 'Content'}> 
                     {props.children} 
                 </div>
             </div>

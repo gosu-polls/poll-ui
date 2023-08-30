@@ -9,7 +9,8 @@ function GoogleAuth(props) {
 
   const login = useGoogleLogin({
     onSuccess: (codeResponse) => {
-      fetch(" https://polls-api.azurewebsites.net/login", {
+      let url = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_PROD_API_HOST : process.env.REACT_APP_DEV_API_HOST
+      fetch(`${url}/login`, {
         method: "POST",
         mode: 'cors',
         headers: {
