@@ -16,7 +16,8 @@ function VotingSection(props) {
     
     const loadPolls = async () => {
         let url = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_PROD_API_HOST : process.env.REACT_APP_DEV_API_HOST
-        await fetch(`${url}/votesection`, {
+        let endpoint = props.poll_mode === 'active' ? 'votesection' : 'votehistory'
+        await fetch(`${url}/${endpoint}`, {
           method: "GET",
           headers: {
             "Accept": "application/json",
@@ -172,7 +173,7 @@ function VotingSection(props) {
                             vote.data.map((vd) => {
                             return (
                                 <div key={vd.vote_title} >
-                                    <div className="activePollTitle">
+                                    <div className={ props.poll_mode === 'active'? "activePollTitle" : 'historyPollTitle'}>
                                         <span>{vd.vote_title}</span>
                                     </div>
                                     <div className="Tabs">
@@ -197,7 +198,7 @@ function VotingSection(props) {
                                             <>
                                             {vd.vote_detail.map((vdd) => {
                                             return(
-                                                <div key={vdd.vote_detail_id} className="activePollOptions">
+                                                <div key={vdd.vote_detail_id} className={ props.poll_mode === 'active'? "activePollOptions" : 'historyPollOptions'}>
                                                     <div className="form-check">
                                                         <input
                                                             className="form-check-input"
@@ -210,7 +211,7 @@ function VotingSection(props) {
                                                             checked={vdd.vote_detail_id === vd.selected_vote_detail_id ? true : false}
                                                             onChange={handleOptionClick}
                                                             option = {vdd['option']}
-                                                            disabled = {vd.is_open === "Y" ? false : true }
+                                                            disabled = {(vd.is_open === "Y" && props.poll_mode==='active') ? false : true }
                                                         />
                                                         <label
                                                             className="form-check-label"
@@ -223,22 +224,23 @@ function VotingSection(props) {
                                             )}
                                             )
                                             }
-                                            <div className="activePollActionsContainer">
-                                                {console.log(vd.is_open)}
-                                            <button
-                                                name = {vd.vote_id.toString()}
-                                                id = {vd.vote_id.toString()} 
-                                                poll_id = {vote.poll_id}
-                                                vote_id = {vd.vote_id}
-                                                value = {vd.vote_id}
-                                                className="activePollActionButton"
-                                                onClick={handleSubmitClick}
-                                                type="submit"
-                                                disabled = {vd.is_open !== 'Y'}
-                                            >
-                                                <span className="pollActionText"> {vd.is_open === "Y" ? "Submit" : "Frozen" } </span>
-                                            </button>
-                                            </div>
+                                            {props.poll_mode === 'active' &&
+                                                <div className="activePollActionsContainer">
+                                                <button
+                                                    name = {vd.vote_id.toString()}
+                                                    id = {vd.vote_id.toString()} 
+                                                    poll_id = {vote.poll_id}
+                                                    vote_id = {vd.vote_id}
+                                                    value = {vd.vote_id}
+                                                    className="activePollActionButton"
+                                                    onClick={handleSubmitClick}
+                                                    type="submit"
+                                                    disabled = {vd.is_open != 'Y'}
+                                                >
+                                                    <span className="pollActionText"> {vd.is_open === "Y" ? "Submit" : "Frozen" } </span>
+                                                </button>
+                                                </div>
+                                            }
                                         </>
                                         : 
                                             <>

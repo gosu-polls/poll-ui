@@ -177,7 +177,23 @@
     font-weight: 900;
 }
 
+.historyPollTitle {
+    top: 0;
+    height: 20%;
+    /* width: 100%; */
+    margin: 5px 5px 5px 5px;
+    align-items: center;
+    align-content: center;
+    align-self: center;
+    padding: 1px;
+    border-radius: 5px;
+    background-color: #545252;
+    font-size: large;
+    text-align: center;
+    color: rgb(168, 172, 175);
+    font-weight: 600;
 
+}
 .activePollOptionContainer {
     top: 0;
     height: 20%;
@@ -207,7 +223,22 @@
     font-weight: 500;
 }
 
+.historyPollOptions {
+    top: 0;
+    height: 20%;
+    /* width: 100%; */
+    margin: 5px 5px 5px 5px;
+    align-items: center;
+    align-content: center;
+    align-self: center;
+    padding: 1px;
+    border-radius: 5px;
+    background-color: #1b1e1f;
+    font-size: medium;
+    color: rgb(255, 250, 250);
+    /* font-weight: 100; */
 
+}
 
 
 .activePollOptionRadio {
@@ -371,6 +402,7 @@
     height: auto;
     /* width: 100%; */
     margin: 5px 5px 5px 5px;
+    text-align: center;
     align-items: center;
     align-content: center;
     align-self: center;
@@ -384,7 +416,25 @@
     /* paadding-right: 20px;; */
 
 }
+.historyPollsContainer{   
+    top: 0;
+    height: auto;
+    /* width: 100%; */
+    margin: 5px 5px 5px 5px;
+    text-align: center;
+    align-items: center;
+    align-content: center;
+    align-self: center;
+    padding: 1px;
+    border-radius: 5px;
+    background-color: #6f5151;
+    font-size: x-large;
+    /* text-align: center; */
+    color: rgb(171, 187, 202);
+    font-weight: 700;
+    /* paadding-right: 20px;; */
 
+}
 .participatingPollsText {
     top: 5px;
     padding-left: 2%;

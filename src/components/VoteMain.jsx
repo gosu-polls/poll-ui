@@ -87,9 +87,9 @@ function VoteMain(props) {
               {/* Participating Poll Start */}
               <>
                 <div className="participatingPollsContainer">
-                  <span className="participatingPollsText">
+                  {/* <span className="participatingPollsText">
                     My Polls
-                  </span>
+                  </span> */}
                   <span>
                     <button className={selectedParticipatingPollIndexId > 0 ? "participatingPollNavBtn participatingPollNavLeftBtn" : "participatingPollNavBtnDisabled participatingPollNavLeftBtn"}
                             id = '-1'
@@ -148,10 +148,20 @@ function VoteMain(props) {
 
               {/* Voting Section Start */}
               <>
-                <VotingSection selectedParticipatingPollId={selectedParticipatingPollId}/>
+                <VotingSection selectedParticipatingPollId={selectedParticipatingPollId} poll_mode='active'/>
               </>
               {/* Voting Section End */}
-              
+
+
+              {/* Voting History Start */}
+              <>
+                <div className="historyPollsContainer">
+                  Poll History
+                </div>
+                <VotingSection selectedParticipatingPollId={selectedParticipatingPollId} poll_mode='history'/>
+              </>
+              {/* Voting History End */}
+
               {/* Vote Results Start */}
               <>
                 {/* <VoteResults selectedParticipatingPollId={selectedParticipatingPollId}/> */}
