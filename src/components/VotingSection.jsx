@@ -247,6 +247,7 @@ function VotingSection(props) {
                                                 <div className="form-check">
 
                                                 <div className="container text-center">
+                                                    { props.poll_mode === 'active' &&
                                                     <div className="row">
                                                         <div className="col adminLabel">
                                                             Click to {vd.is_open === "Y" ? "Freeze Vote" : "Unfreeze Vote" } 
@@ -273,6 +274,7 @@ function VotingSection(props) {
 
                                                         </div>
                                                     </div>
+                                                    }
 
 
                                                     <div className="row">
